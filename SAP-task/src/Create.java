@@ -1,11 +1,12 @@
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.*;
+import java.awt.Color;
 public class Create extends JFrame{
     public Create(){
     setTitle("Създай потребител ");
     setSize(350, 200);
-
+        getContentPane().setBackground(new Color(255, 243, 202));
         setLocationRelativeTo(null); // Центрира прозореца на екрана
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
