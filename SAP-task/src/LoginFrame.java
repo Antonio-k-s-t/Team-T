@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
@@ -11,7 +12,7 @@ public class LoginFrame extends JFrame {
         setLocationRelativeTo(null); // Център на екрана
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(null);
-
+        getContentPane().setBackground(new Color(255, 243, 202));
         JLabel Potrebitel = new JLabel("Потребител:");
         JTextField Zaguben = new JTextField();
         JLabel Vernaparola = new JLabel("Парола:");
