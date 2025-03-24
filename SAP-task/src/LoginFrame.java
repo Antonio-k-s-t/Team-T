@@ -14,8 +14,10 @@ public class LoginFrame extends JFrame {
         setLayout(null);
         getContentPane().setBackground(new Color(255, 243, 202));
         JLabel Potrebitel = new JLabel("Потребител:");
+        Potrebitel.setFont(new Font("SansSerif", Font.PLAIN, 14));
         JTextField Zaguben = new JTextField();
         JLabel Vernaparola = new JLabel("Парола:");
+        Vernaparola.setFont(new Font("SansSerif", Font.PLAIN, 14));
         JPasswordField Greshnaparola = new JPasswordField();
         JButton loginButton = new JButton("Вход");
         JButton RegistButton = new JButton("Регистрирай се");

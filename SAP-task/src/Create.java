@@ -1,7 +1,8 @@
+import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.*;
-import java.awt.Color;
+
 public class Create extends JFrame{
     public Create(){
     setTitle("Създай потребител ");
@@ -12,7 +13,7 @@ public class Create extends JFrame{
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     setLayout(null);
     JLabel novPotrebitel = new JLabel(" Нов Потребител:");
-
+        novPotrebitel.setFont(new Font("SansSerif", Font.PLAIN, 14));
     add(novPotrebitel);
 
     JTextField novZaguben = new JTextField();
@@ -20,6 +21,7 @@ public class Create extends JFrame{
     add(novZaguben);
 
     JLabel novVernaparola = new JLabel(" Нова Парола:");
+        novVernaparola.setFont(new Font("SansSerif", Font.PLAIN, 14));
     add(novVernaparola);
     JPasswordField novGreshnaparola = new JPasswordField();
     add(novGreshnaparola);
