@@ -1,30 +1,45 @@
-import java.awt.Color;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.*;
 public class Create extends JFrame{
     public Create(){
     setTitle("Създай потребител ");
     setSize(350, 200);
+
+        setLocationRelativeTo(null); // Центрира прозореца на екрана
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     setLayout(null);
     JLabel novPotrebitel = new JLabel(" Нов Потребител:");
-                novPotrebitel.setBounds(30, 30, 100, 25);
+
     add(novPotrebitel);
 
     JTextField novZaguben = new JTextField();
-                novZaguben.setBounds(130, 30, 160, 25);
+
     add(novZaguben);
 
     JLabel novVernaparola = new JLabel(" Нова Парола:");
-                novVernaparola.setBounds(30, 70, 100, 25);
     add(novVernaparola);
-
     JPasswordField novGreshnaparola = new JPasswordField();
-                novGreshnaparola.setBounds(130, 70, 160, 25);
     add(novGreshnaparola);
-    JButton CreatButton=new JButton("Създай");
-                CreatButton.setBounds(190, 110, 140, 25);
-    add(CreatButton);
+        JButton CreatButton=new JButton("Създай");
+        add(CreatButton);
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                int center2 = getWidth() / 2;
+                novPotrebitel.setBounds(center2 - 150, 100, 100, 25);
+                novZaguben.setBounds(center2 - 50, 100, 160, 25);
+                novVernaparola.setBounds(center2 - 150, 140, 100, 25);
+                novGreshnaparola.setBounds(center2 - 50, 140, 160, 25);
+                CreatButton.setBounds(center2 -50, 190, 140, 25);
+
+            }
+        });
         setVisible(true);
+
+
+
 
     }
 }
