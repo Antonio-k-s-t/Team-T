@@ -6,6 +6,7 @@ import java.awt.event.ComponentEvent;
 public class LoginFrame extends JFrame {
 
     public LoginFrame() {
+       //целя екран
         setTitle("Вход в системата");
         setSize(650, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -13,6 +14,23 @@ public class LoginFrame extends JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(null);
         getContentPane().setBackground(new Color(255, 243, 202));
+       //логото
+        ImageIcon imageIcon = new ImageIcon("Trohar Delivar-modified.png"); // път към снимката
+        Image scaledImage = imageIcon.getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH); // нов размер
+        ImageIcon resizedIcon = new ImageIcon(scaledImage);
+        JLabel imageLabel = new JLabel(resizedIcon);
+        imageLabel.setBounds(100, 0, 200, 150); // същите размери като на scaledInstance
+        add(imageLabel);
+
+        // хедара
+        JPanel coloredPanel = new JPanel();
+        coloredPanel.setBounds(0, 0, 2000, 160); // позиция и размер
+        coloredPanel.setBackground(new Color(246, 214, 165)); // цвят на фона
+        add(coloredPanel);
+
+
+
+
         JLabel Potrebitel = new JLabel("Потребител:");
         Potrebitel.setFont(new Font("SansSerif", Font.PLAIN, 14));
         JTextField Zaguben = new JTextField();
@@ -35,12 +53,13 @@ public class LoginFrame extends JFrame {
             public void componentResized(ComponentEvent e) {
                 int centerX = getWidth() / 2;
 
-                Potrebitel.setBounds(centerX - 150, 100, 100, 25);
-                Zaguben.setBounds(centerX - 50, 100, 160, 25);
-                Vernaparola.setBounds(centerX - 150, 140, 100, 25);
-                Greshnaparola.setBounds(centerX - 50, 140, 160, 25);
-                loginButton.setBounds(centerX - 100, 190, 90, 25);
-                RegistButton.setBounds(centerX + 10, 190, 140, 25);
+                Potrebitel.setBounds(centerX - 150, 60+100, 100, 25);
+                Zaguben.setBounds(centerX - 50, 60+100, 160, 25);
+                Vernaparola.setBounds(centerX - 150, 60+140, 100, 25);
+                Greshnaparola.setBounds(centerX - 50, 60+140, 160, 25);
+                loginButton.setBounds(centerX - 100, 60+190, 90, 25);
+                RegistButton.setBounds(centerX + 10, 60+190, 140, 25);
+                imageLabel.setBounds(centerX-100, 0, 200, 150);
             }
         });
 

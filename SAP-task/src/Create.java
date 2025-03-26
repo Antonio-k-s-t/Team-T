@@ -6,7 +6,7 @@ import javax.swing.*;
 public class Create extends JFrame{
     public Create(){
     setTitle("Създай потребител ");
-    setSize(350, 200);
+        setSize(650, 500);
         getContentPane().setBackground(new Color(255, 243, 202));
         setLocationRelativeTo(null); // Центрира прозореца на екрана
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
