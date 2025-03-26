@@ -27,6 +27,20 @@ public class Create extends JFrame{
     add(novGreshnaparola);
         JButton CreatButton=new JButton("Създай");
         add(CreatButton);
+
+        ImageIcon normalIcon = new ImageIcon("ChatGPT Image Mar 26, 2025, 03_03_40 PM.png");     // стандартна снимка
+        ImageIcon hoverIcon = new ImageIcon("ChatGPT Image Mar 26, 2025, 03_03_44 PM.png");       // снимка при hover
+
+        JButton imageButton = new JButton(normalIcon);
+
+        imageButton.setBorderPainted(false);
+        imageButton.setContentAreaFilled(false);
+        imageButton.setFocusPainted(false);
+        imageButton.setRolloverIcon(hoverIcon); // снимка при hover
+
+        add(imageButton);
+
+
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -36,7 +50,7 @@ public class Create extends JFrame{
                 novVernaparola.setBounds(center2 - 150, 140, 100, 25);
                 novGreshnaparola.setBounds(center2 - 50, 140, 160, 25);
                 CreatButton.setBounds(center2 -50, 190, 140, 25);
-
+                imageButton.setBounds(center2-50, 50, normalIcon.getIconWidth(), normalIcon.getIconHeight());
             }
         });
         setVisible(true);

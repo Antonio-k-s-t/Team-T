@@ -16,7 +16,7 @@ public class LoginFrame extends JFrame {
         getContentPane().setBackground(new Color(255, 243, 202));
        //логото
         ImageIcon imageIcon = new ImageIcon("Trohar Delivar-modified.png"); // път към снимката
-        Image scaledImage = imageIcon.getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH); // нов размер
+        Image scaledImage = imageIcon.getImage().getScaledInstance(300, 250, Image.SCALE_SMOOTH); // нов размер
         ImageIcon resizedIcon = new ImageIcon(scaledImage);
         JLabel imageLabel = new JLabel(resizedIcon);
         imageLabel.setBounds(100, 10, 200, 300); // същите размери като на scaledInstance
@@ -24,7 +24,7 @@ public class LoginFrame extends JFrame {
 
         // хедара
         JPanel coloredPanel = new JPanel();
-        coloredPanel.setBounds(0, 0, 2000, 180); // позиция и размер
+        coloredPanel.setBounds(0, 0, 2800, 264); // позиция и размер
         coloredPanel.setBackground(new Color(246, 214, 165)); // цвят на фона
         add(coloredPanel);
 
@@ -53,13 +53,13 @@ public class LoginFrame extends JFrame {
             public void componentResized(ComponentEvent e) {
                 int centerX = getWidth() / 2;
 
-                Potrebitel.setBounds(centerX - 150, 80+100, 100, 25);
-                Zaguben.setBounds(centerX - 50, 80+100, 160, 25);
-                Vernaparola.setBounds(centerX - 150, 80+140, 100, 25);
-                Greshnaparola.setBounds(centerX - 50, 80+140, 160, 25);
-                loginButton.setBounds(centerX - 100, 80+190, 90, 25);
-                RegistButton.setBounds(centerX + 10, 80+190, 140, 25);
-                imageLabel.setBounds(centerX-90, 0, 200, 150);
+                Potrebitel.setBounds(centerX - 150, 180+100, 100, 25);
+                Zaguben.setBounds(centerX - 50, 180+100, 160, 25);
+                Vernaparola.setBounds(centerX - 150, 180+140, 100, 25);
+                Greshnaparola.setBounds(centerX - 50, 180+140, 160, 25);
+                loginButton.setBounds(centerX - 100, 180+190, 90, 25);
+                RegistButton.setBounds(centerX + 10, 180+190, 140, 25);
+                imageLabel.setBounds(centerX-220, -90, 500, 450);
             }
         });
 
