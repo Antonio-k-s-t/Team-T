@@ -19,12 +19,12 @@ public class LoginFrame extends JFrame {
         Image scaledImage = imageIcon.getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH); // нов размер
         ImageIcon resizedIcon = new ImageIcon(scaledImage);
         JLabel imageLabel = new JLabel(resizedIcon);
-        imageLabel.setBounds(100, 0, 200, 150); // същите размери като на scaledInstance
+        imageLabel.setBounds(100, 10, 200, 150); // същите размери като на scaledInstance
         add(imageLabel);
 
         // хедара
         JPanel coloredPanel = new JPanel();
-        coloredPanel.setBounds(0, 0, 2000, 160); // позиция и размер
+        coloredPanel.setBounds(0, 0, 2000, 180); // позиция и размер
         coloredPanel.setBackground(new Color(246, 214, 165)); // цвят на фона
         add(coloredPanel);
 
@@ -53,13 +53,13 @@ public class LoginFrame extends JFrame {
             public void componentResized(ComponentEvent e) {
                 int centerX = getWidth() / 2;
 
-                Potrebitel.setBounds(centerX - 150, 60+100, 100, 25);
-                Zaguben.setBounds(centerX - 50, 60+100, 160, 25);
-                Vernaparola.setBounds(centerX - 150, 60+140, 100, 25);
-                Greshnaparola.setBounds(centerX - 50, 60+140, 160, 25);
-                loginButton.setBounds(centerX - 100, 60+190, 90, 25);
-                RegistButton.setBounds(centerX + 10, 60+190, 140, 25);
-                imageLabel.setBounds(centerX-100, 0, 200, 150);
+                Potrebitel.setBounds(centerX - 150, 80+100, 100, 25);
+                Zaguben.setBounds(centerX - 50, 80+100, 160, 25);
+                Vernaparola.setBounds(centerX - 150, 80+140, 100, 25);
+                Greshnaparola.setBounds(centerX - 50, 80+140, 160, 25);
+                loginButton.setBounds(centerX - 100, 80+190, 90, 25);
+                RegistButton.setBounds(centerX + 10, 80+190, 140, 25);
+                imageLabel.setBounds(centerX-90, 0, 200, 150);
             }
         });
 
