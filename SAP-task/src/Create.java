@@ -27,16 +27,24 @@ public class Create extends JFrame{
     add(novGreshnaparola);
         JButton CreatButton=new JButton("Създай");
         add(CreatButton);
+//Бутон вилица
+        // Зареждане и мащабиране на нормалната снимка
+        ImageIcon originalIcon = new ImageIcon("vilica1.png");
+        Image scaledNormal = originalIcon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        ImageIcon normalIcon = new ImageIcon(scaledNormal);
 
-        ImageIcon normalIcon = new ImageIcon("ChatGPT Image Mar 26, 2025, 03_03_40 PM.png");     // стандартна снимка
-        ImageIcon hoverIcon = new ImageIcon("ChatGPT Image Mar 26, 2025, 03_03_44 PM.png");       // снимка при hover
+// Зареждане и мащабиране на hover снимката
+        ImageIcon originalHover = new ImageIcon("vilica2.png");
+        Image scaledHover = originalHover.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+        ImageIcon hoverIcon = new ImageIcon(scaledHover);
 
+// Създаване на бутона
         JButton imageButton = new JButton(normalIcon);
 
         imageButton.setBorderPainted(false);
         imageButton.setContentAreaFilled(false);
         imageButton.setFocusPainted(false);
-        imageButton.setRolloverIcon(hoverIcon); // снимка при hover
+        imageButton.setRolloverIcon(hoverIcon);
 
         add(imageButton);
 
@@ -50,7 +58,7 @@ public class Create extends JFrame{
                 novVernaparola.setBounds(center2 - 150, 140, 100, 25);
                 novGreshnaparola.setBounds(center2 - 50, 140, 160, 25);
                 CreatButton.setBounds(center2 -50, 190, 140, 25);
-                imageButton.setBounds(center2-50, 50, normalIcon.getIconWidth(), normalIcon.getIconHeight());
+                imageButton.setBounds(center2-50, 210, 150, 150); // позиция и размер
             }
         });
         setVisible(true);

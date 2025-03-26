@@ -30,7 +30,6 @@ public class LoginFrame extends JFrame {
 
 
 
-
         JLabel Potrebitel = new JLabel("Потребител:");
         Potrebitel.setFont(new Font("SansSerif", Font.PLAIN, 14));
         JTextField Zaguben = new JTextField();
@@ -59,7 +58,7 @@ public class LoginFrame extends JFrame {
                 Greshnaparola.setBounds(centerX - 50, 180+140, 160, 25);
                 loginButton.setBounds(centerX - 100, 180+190, 90, 25);
                 RegistButton.setBounds(centerX + 10, 180+190, 140, 25);
-                imageLabel.setBounds(centerX-220, -90, 500, 450);
+                imageLabel.setBounds(centerX-150, -90, 300, 450);
             }
         });
 
