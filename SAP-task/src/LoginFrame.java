@@ -87,8 +87,8 @@ public class LoginFrame extends JFrame {
                 Vernaparola.setBounds(centerX - 150, 180+140, 100, 25);
                 Greshnaparola.setBounds(centerX - 50, 180+140, 160, 25);
                 imageLabel.setBounds(centerX-150, -90, 300, 450);
-                imageButton.setBounds(centerX-160, 180+180, 150, 80); // позиция и размер
-                imageButton1.setBounds(centerX, 180+180, 150, 80); // позиция и размер
+                imageButton.setBounds(centerX-160, 180+180, 150, 90); // позиция и размер
+                imageButton1.setBounds(centerX, 180+180, 150, 90); // позиция и размер
             }
         });
 
