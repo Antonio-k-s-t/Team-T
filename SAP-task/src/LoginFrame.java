@@ -19,7 +19,7 @@ public class LoginFrame extends JFrame {
         Image scaledImage = imageIcon.getImage().getScaledInstance(200, 150, Image.SCALE_SMOOTH); // нов размер
         ImageIcon resizedIcon = new ImageIcon(scaledImage);
         JLabel imageLabel = new JLabel(resizedIcon);
-        imageLabel.setBounds(100, 10, 200, 150); // същите размери като на scaledInstance
+        imageLabel.setBounds(100, 10, 200, 300); // същите размери като на scaledInstance
         add(imageLabel);
 
         // хедара
