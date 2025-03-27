@@ -11,16 +11,16 @@ public class LoginFrame extends JFrame {
         setSize(650, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Център на екрана
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(null);
         getContentPane().setBackground(new Color(255, 243, 202));
        //логото
         ImageIcon imageIcon = new ImageIcon("Trohar Delivar-modified.png"); // път към снимката
         Image scaledImage = imageIcon.getImage().getScaledInstance(300, 250, Image.SCALE_SMOOTH); // нов размер
         ImageIcon resizedIcon = new ImageIcon(scaledImage);
-        JLabel imageLabel = new JLabel(resizedIcon);
-        imageLabel.setBounds(100, 10, 200, 300); // същите размери като на scaledInstance
-        add(imageLabel);
+        JLabel logo_trohar = new JLabel(resizedIcon);
+        logo_trohar.setBounds(100, 10, 200, 300); // същите размери като на scaledInstance
+        add(logo_trohar);
 
         // хедара
         JPanel coloredPanel = new JPanel();
@@ -39,12 +39,12 @@ public class LoginFrame extends JFrame {
         ImageIcon hoverIcon = new ImageIcon(scaledHover);
 
 // Създаване на бутона
-        JButton imageButton = new JButton(normalIcon);
-        imageButton.setBorderPainted(false);
-        imageButton.setContentAreaFilled(false);
-        imageButton.setFocusPainted(false);
-        imageButton.setRolloverIcon(hoverIcon);
-        add(imageButton);
+        JButton imageButton1 = new JButton(normalIcon);
+        imageButton1.setBorderPainted(false);
+        imageButton1.setContentAreaFilled(false);
+        imageButton1.setFocusPainted(false);
+        imageButton1.setRolloverIcon(hoverIcon);
+        add(imageButton1);
 //Бутон лажица
         // Зареждане и мащабиране на нормалната снимка
         ImageIcon originalIcon2 = new ImageIcon("lajica1.png");
@@ -57,47 +57,55 @@ public class LoginFrame extends JFrame {
         ImageIcon hoverIcon1 = new ImageIcon(scaledHover1);
 
 // Създаване на бутона
-        JButton imageButton1 = new JButton(normalIcon1);
-        imageButton1.setBorderPainted(false);
-        imageButton1.setContentAreaFilled(false);
-        imageButton1.setFocusPainted(false);
-        imageButton1.setRolloverIcon(hoverIcon1);
-        add(imageButton1);
-
+        JButton imageButton2 = new JButton(normalIcon1);
+        imageButton2.setBorderPainted(false);
+        imageButton2.setContentAreaFilled(false);
+        imageButton2.setFocusPainted(false);
+        imageButton2.setRolloverIcon(hoverIcon1);
+        add(imageButton2);
+//полета
         JLabel Potrebitel = new JLabel("Потребител:");
         Potrebitel.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        JTextField Zaguben = new JTextField();
+        JTextField Polezapisane_n = new JTextField();
         JLabel Vernaparola = new JLabel("Парола:");
         Vernaparola.setFont(new Font("SansSerif", Font.PLAIN, 14));
-        JPasswordField Greshnaparola = new JPasswordField();
+        JPasswordField Parola_pole = new JPasswordField();
+        JLabel Vhod=new JLabel("Вход");
+        Vhod.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        JLabel Create=new JLabel("Създай");
+        Create.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        add(Create);
+        add(Vhod);
         add(Potrebitel);
-        add(Zaguben);
+        add(Polezapisane_n);
         add(Vernaparola);
-        add(Greshnaparola);
+        add(Parola_pole);
 
 
-        // Компонент лиснър – когато прозорецът се преоразмери
+        // Тук е за центриране на всичко
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 int centerX = getWidth() / 2;
 
                 Potrebitel.setBounds(centerX - 150, 180+100, 100, 25);
-                Zaguben.setBounds(centerX - 50, 180+100, 160, 25);
+                Polezapisane_n.setBounds(centerX - 50, 180+100, 160, 25);
                 Vernaparola.setBounds(centerX - 150, 180+140, 100, 25);
-                Greshnaparola.setBounds(centerX - 50, 180+140, 160, 25);
-                imageLabel.setBounds(centerX-150, -90, 300, 450);
-                imageButton.setBounds(centerX-160, 180+180, 150, 90); // позиция и размер
-                imageButton1.setBounds(centerX, 180+180, 150, 90); // позиция и размер
+                Parola_pole.setBounds(centerX - 50, 180+140, 160, 25);
+                logo_trohar.setBounds(centerX-150, -90, 300, 450);
+                imageButton1.setBounds(centerX-160, 180+180, 150, 90); // позиция и размер
+                imageButton2.setBounds(centerX, 180+180, 150, 90); // позиция и размер
+                Vhod.setBounds(centerX-120, 180+195, 100, 25);
+                Create.setBounds(centerX+60, 180+195, 100, 25);
             }
         });
 
         // Действия на бутоните
-        imageButton.addActionListener(e -> {
-            String user = Zaguben.getText();
-            String pass = new String(Greshnaparola.getPassword());
+        imageButton1.addActionListener(e -> {
+            String user = Polezapisane_n.getText();
+            String pass = new String(Parola_pole.getPassword());
 
-            if (user.equals("Крис") && pass.equals("1234")) {
+            if (user.equals("1") && pass.equals("1")) {
                 JOptionPane.showMessageDialog(this, "Успешен вход като клиент!");
             } else if (user.equals("Алекс") && pass.equals("1")) {
                 JOptionPane.showMessageDialog(this, "Успешен вход като служител!");
@@ -106,7 +114,7 @@ public class LoginFrame extends JFrame {
             }
         });
 
-        imageButton1.addActionListener(e -> new Create());
+        imageButton2.addActionListener(e -> new Create());
 
         setVisible(true);
     }

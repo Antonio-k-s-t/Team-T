@@ -10,7 +10,7 @@ public class Create extends JFrame{
         getContentPane().setBackground(new Color(255, 243, 202));
         setLocationRelativeTo(null); // Центрира прозореца на екрана
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
     setLayout(null);
     //logo
         ImageIcon imageIcon = new ImageIcon("Trohar Delivar-modified.png"); // път към снимката
@@ -25,40 +25,49 @@ public class Create extends JFrame{
         coloredPanel1.setBounds(0, 0, 2800, 264); // позиция и размер
         coloredPanel1.setBackground(new Color(246, 214, 165)); // цвят на фона
         add(coloredPanel1);
-    JLabel novPotrebitel = new JLabel(" Нов Потребител:");
+        //полета
+    JLabel novPotrebitel = new JLabel(" Име:");
         novPotrebitel.setFont(new Font("SansSerif", Font.PLAIN, 14));
     add(novPotrebitel);
 
-    JTextField novZaguben = new JTextField();
+    JTextField Polepisane2 = new JTextField();
 
-    add(novZaguben);
+    add(Polepisane2);
 
-    JLabel novVernaparola = new JLabel(" Нова Парола:");
-        novVernaparola.setFont(new Font("SansSerif", Font.PLAIN, 14));
-    add(novVernaparola);
-    JPasswordField novGreshnaparola = new JPasswordField();
-    add(novGreshnaparola);
+    JLabel novVernaparola1 = new JLabel("Парола:");
+        novVernaparola1.setFont(new Font("SansSerif", Font.PLAIN, 14));
+    add(novVernaparola1);
+    JPasswordField Poleparola2_1 = new JPasswordField();
+    add(Poleparola2_1);
+      JLabel novVernaparola2=new JLabel("Повтори паролата:");
+      novVernaparola2.setFont(new Font("SansSerif", Font.PLAIN, 14));
+      add(novVernaparola2);
+      JPasswordField Poleparola2_2 = new JPasswordField();
+      add(Poleparola2_2);
+        JLabel Create1=new JLabel("Създай");
+        Create1.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        add(Create1);
 
 //Бутон parvola
         // Зареждане и мащабиране на нормалната снимка
         ImageIcon originalIcon = new ImageIcon("parjola1.png");
-        Image scaledNormal = originalIcon.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
+        Image scaledNormal = originalIcon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         ImageIcon normalIcon = new ImageIcon(scaledNormal);
 
 // Зареждане и мащабиране на hover снимката
         ImageIcon originalHover = new ImageIcon("parjla2.png");
-        Image scaledHover = originalHover.getImage().getScaledInstance(130, 130, Image.SCALE_SMOOTH);
+        Image scaledHover = originalHover.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
         ImageIcon hoverIcon = new ImageIcon(scaledHover);
 
 // Създаване на бутона
-        JButton imageButton = new JButton(normalIcon);
+        JButton imageButton3 = new JButton(normalIcon);
 
-        imageButton.setBorderPainted(false);
-        imageButton.setContentAreaFilled(false);
-        imageButton.setFocusPainted(false);
-        imageButton.setRolloverIcon(hoverIcon);
+        imageButton3.setBorderPainted(false);
+        imageButton3.setContentAreaFilled(false);
+        imageButton3.setFocusPainted(false);
+        imageButton3.setRolloverIcon(hoverIcon);
 
-        add(imageButton);
+        add(imageButton3);
 
 
         addComponentListener(new ComponentAdapter() {
@@ -66,11 +75,14 @@ public class Create extends JFrame{
             public void componentResized(ComponentEvent e) {
                 int center2 = getWidth() / 2;
                 novPotrebitel.setBounds(center2 - 150, 180+100, 100, 25);
-                novZaguben.setBounds(center2 - 50, 180+100, 160, 25);
-                novVernaparola.setBounds(center2 - 150, 180+140, 100, 25);
-                novGreshnaparola.setBounds(center2 - 50, 180+140, 160, 25);
+                Polepisane2.setBounds(center2 - 50, 180+100, 160, 25);
+                novVernaparola1.setBounds(center2 - 150, 180+140, 100, 25);
+                Poleparola2_1.setBounds(center2 - 50, 180+140, 160, 25);
+                novVernaparola2.setBounds(center2 - 180, 180+180, 160, 25);
+                Poleparola2_2.setBounds(center2 - 50, 180+180, 160, 25);
                 imageLabel1.setBounds(center2-150, -90, 300, 450);
-                imageButton.setBounds(center2-50, 180+180, 120, 100); // позиция и размер
+                Create1.setBounds(center2-10, 180+200, 100, 25);
+                imageButton3.setBounds(center2-30, 180+210, 80, 80); // позиция и размер
             }
         });
         setVisible(true);
