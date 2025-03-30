@@ -106,7 +106,7 @@ public class LoginFrame extends JFrame {
             String pass = new String(Parola_pole.getPassword());
 
             if (user.equals("1") && pass.equals("1")) {
-                JOptionPane.showMessageDialog(this, "Успешен вход като клиент!");
+               new Begun();
             } else if (user.equals("Алекс") && pass.equals("1")) {
                 JOptionPane.showMessageDialog(this, "Успешен вход като служител!");
             } else {
