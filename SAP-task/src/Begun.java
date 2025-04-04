@@ -105,6 +105,10 @@ public class Begun extends JFrame {
                 ramka1.setBounds(center2-900, 100, 337, 26400); // позиция и размер
                 ramka2.setBounds(center2+542, 100, 337, 26400); // позиция и размер
             }
+
+        });
+        imageButtonbegun1.addActionListener(e -> {
+
         });
         setVisible(true);
 
