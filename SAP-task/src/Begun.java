@@ -8,6 +8,7 @@ public class Begun extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Център на екрана
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setSize(1800, 1700);
         setLayout(null);
         getContentPane().setBackground(new Color(255, 243, 202));
         //логото
@@ -83,7 +84,14 @@ public class Begun extends JFrame {
         imageButtonbegun4.setFocusPainted(false);
         imageButtonbegun4.setRolloverIcon(hoverIcon4);
         add(imageButtonbegun4);
+//странички рамки
+        JPanel ramka1 = new JPanel();
+        ramka1.setBackground(new Color(255, 170, 84)); // цвят на фона
+        add(ramka1);
 
+        JPanel ramka2 = new JPanel();
+        ramka2.setBackground(new Color(255, 170, 84)); // цвят на фона
+        add(ramka2);
         // Тук е за центриране на всичко
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -93,8 +101,9 @@ public class Begun extends JFrame {
                 imageButtonbegun1.setBounds(center2-870+300, 193, 300, 200);
                 imageButtonbegun2.setBounds(center2-585+300, 193, 300, 200);
                 imageButtonbegun3.setBounds(center2-299+300, 193, 300, 200);
-                imageButtonbegun4.setBounds(center2-42+300, 193, 300, 200);
-
+                imageButtonbegun4.setBounds(center2-43+300, 193, 300, 200);
+                ramka1.setBounds(center2-900, 100, 337, 26400); // позиция и размер
+                ramka2.setBounds(center2+542, 100, 337, 26400); // позиция и размер
             }
         });
         setVisible(true);
