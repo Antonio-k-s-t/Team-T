@@ -86,12 +86,12 @@ public class Begun extends JFrame {
         add(imageButtonbegun4);
 //странички рамки
         JPanel ramka1 = new JPanel();
-        ramka1.setBackground(new Color(255, 170, 84)); // цвят на фона
+        ramka1.setBackground(new Color(244, 200, 152)); // цвят на фона
         ramka1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         add(ramka1);
 
         JPanel ramka2 = new JPanel();
-        ramka2.setBackground(new Color(255, 170, 84)); // цвят на фона
+        ramka2.setBackground(new Color(244, 200, 152)); // цвят на фона
         ramka2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         add(ramka2);
         // Тук е за центриране на всичко
@@ -222,7 +222,7 @@ public class Begun extends JFrame {
             imageButtonbegun9.setRolloverIcon(hoverIcon9);
             add(imageButtonbegun9);
 
-//поле на бънта за салатите
+//поле на бънта за kartofki
             JPanel pole5 = new JPanel();
             pole5.setBackground(new Color(255, 170, 84)); // цвят на фона
             pole5.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
@@ -240,7 +240,108 @@ public class Begun extends JFrame {
         });
 
         imageButtonbegun3.addActionListener(e -> {
+            //бутон торта
+            ImageIcon originalIcon10 = new ImageIcon("Torta1.png");
+            Image scaledNormal10 = originalIcon10.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon normalIcon10 = new ImageIcon(scaledNormal10);
 
+            ImageIcon originalHover10 = new ImageIcon("Torta2.png");
+            Image scaledHover10 = originalHover10.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon hoverIcon10 = new ImageIcon(scaledHover10);
+
+            JButton imageButtonbegun10 = new JButton(normalIcon10);
+            imageButtonbegun10.setBorderPainted(false);
+            imageButtonbegun10.setContentAreaFilled(false);
+            imageButtonbegun10.setFocusPainted(false);
+            imageButtonbegun10.setRolloverIcon(hoverIcon10);
+            add(imageButtonbegun10);
+            //панел на битона торта
+            JPanel pole6 = new JPanel();
+            pole6.setBackground(new Color(255, 170, 84)); // цвят на фона
+            pole6.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+            add(pole6);
+            //бутон сладолед
+            ImageIcon originalIcon11 = new ImageIcon("sladoled1.png");
+            Image scaledNormal11 = originalIcon11.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon normalIcon11 = new ImageIcon(scaledNormal11);
+
+            ImageIcon originalHover11 = new ImageIcon("Sladoled2.png");
+            Image scaledHover11 = originalHover11.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon hoverIcon11 = new ImageIcon(scaledHover11);
+
+            JButton imageButtonbegun11 = new JButton(normalIcon11);
+            imageButtonbegun11.setBorderPainted(false);
+            imageButtonbegun11.setContentAreaFilled(false);
+            imageButtonbegun11.setFocusPainted(false);
+            imageButtonbegun11.setRolloverIcon(hoverIcon11);
+            add(imageButtonbegun11);
+            //панел на битона торта
+            JPanel pole7 = new JPanel();
+            pole7.setBackground(new Color(255, 170, 84)); // цвят на фона
+            pole7.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+            add(pole7);
+            //размеряване
+            int center2_2 = getWidth() / 2;
+            imageButtonbegun10.setBounds(center2_2-870+930, 290, 180, 130);
+            pole6.setBounds(center2_2-870+883, 220, 260, 200); // позиция и размер
+            imageButtonbegun11.setBounds(center2_2-870+930, 410, 180, 130);
+            pole7.setBounds(center2_2-870+883, 340, 260, 200); // позиция и размер
+            repaint();
+            //това спира бутона за основните
+            imageButtonbegun3.setRolloverIcon(null); // премахва hover иконата
+            imageButtonbegun3.setIcon(normalIcon3);   // връща нормалната икона
+        });
+        imageButtonbegun4.addActionListener(e -> {
+            //бутон без алккохолни напитки  напитки
+            ImageIcon originalIcon12 = new ImageIcon("Sok1.png");
+            Image scaledNormal12 = originalIcon12.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon normalIcon12 = new ImageIcon(scaledNormal12);
+
+            ImageIcon originalHover12 = new ImageIcon("Sok2.png");
+            Image scaledHover12 = originalHover12.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon hoverIcon12 = new ImageIcon(scaledHover12);
+
+            JButton imageButtonbegun12 = new JButton(normalIcon12);
+            imageButtonbegun12.setBorderPainted(false);
+            imageButtonbegun12.setContentAreaFilled(false);
+            imageButtonbegun12.setFocusPainted(false);
+            imageButtonbegun12.setRolloverIcon(hoverIcon12);
+            add(imageButtonbegun12);
+            //панел на битона торта
+            JPanel pole8 = new JPanel();
+            pole8.setBackground(new Color(255, 170, 84)); // цвят на фона
+            pole8.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+            add(pole8);
+            //бутон алкохол
+            ImageIcon originalIcon13 = new ImageIcon("alcko1.png");
+            Image scaledNormal13 = originalIcon13.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon normalIcon13 = new ImageIcon(scaledNormal13);
+
+            ImageIcon originalHover13 = new ImageIcon("alcko2.png");
+            Image scaledHover13 = originalHover13.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon hoverIcon13 = new ImageIcon(scaledHover13);
+
+            JButton imageButtonbegun13 = new JButton(normalIcon13);
+            imageButtonbegun13.setBorderPainted(false);
+            imageButtonbegun13.setContentAreaFilled(false);
+            imageButtonbegun13.setFocusPainted(false);
+            imageButtonbegun13.setRolloverIcon(hoverIcon13);
+            add(imageButtonbegun13);
+            //панел на битона торта
+            JPanel pole9 = new JPanel();
+            pole9.setBackground(new Color(255, 170, 84)); // цвят на фона
+            pole9.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+            add(pole9);
+            //размеряване
+            int center2_2 = getWidth() / 2;
+            imageButtonbegun12.setBounds(center2_2-870+1185, 290, 180, 130);
+            pole8.setBounds(center2_2-870+1142, 220, 270, 200); // позиция и размер
+            imageButtonbegun13.setBounds(center2_2-870+1185, 410, 180, 130);
+            pole9.setBounds(center2_2-870+1142, 340, 270, 200); // позиция и размер
+            repaint();
+            //това спира бутона за основните
+            imageButtonbegun4.setRolloverIcon(null); // премахва hover иконата
+            imageButtonbegun4.setIcon(normalIcon4);   // връща нормалната икона
         });
         setVisible(true);
 
