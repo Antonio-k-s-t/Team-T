@@ -109,7 +109,6 @@ public class Begun extends JFrame {
             }
 
         });
-        //Основни
         imageButtonbegun1.addActionListener(e -> {
             // това е за бутона бургер
             ImageIcon originalIcon5 = new ImageIcon("Burger1.png");
@@ -183,20 +182,8 @@ public class Begun extends JFrame {
             //това спира бутона за основните
             imageButtonbegun1.setRolloverIcon(null); // премахва hover иконата
             imageButtonbegun1.setIcon(normalIcon);   // връща нормалната икона
-            imageButtonbegun5.addActionListener(e1 ->{
-                new Burgar();
-                SwingUtilities.getWindowAncestor(imageButtonbegun5).dispose();
-            });
-            imageButtonbegun6.addActionListener(e1 ->{
-                new Pizza();
-                SwingUtilities.getWindowAncestor(imageButtonbegun6).dispose();
-            });
-            imageButtonbegun7.addActionListener(e1 ->{
-                new Dishes();
-                SwingUtilities.getWindowAncestor(imageButtonbegun7).dispose();
-            });
+
         });
-        //Гарнитури
         imageButtonbegun2.addActionListener(e -> {
            //бутон за салатите
             ImageIcon originalIcon8 = new ImageIcon("Salata1.png");
@@ -250,16 +237,8 @@ public class Begun extends JFrame {
            //това спира бутона за основните
             imageButtonbegun2.setRolloverIcon(null); // премахва hover иконата
             imageButtonbegun2.setIcon(normalIcon2);   // връща нормалната икона
-            imageButtonbegun8.addActionListener(e1 ->{
-                new Salat();
-                SwingUtilities.getWindowAncestor(imageButtonbegun8).dispose();
-            });
-            imageButtonbegun9.addActionListener(e1 ->{
-                new Pizza();
-                SwingUtilities.getWindowAncestor(imageButtonbegun9).dispose();
-            });
         });
-        //Десерти
+
         imageButtonbegun3.addActionListener(e -> {
             //бутон торта
             ImageIcon originalIcon10 = new ImageIcon("Torta1.png");
@@ -311,16 +290,7 @@ public class Begun extends JFrame {
             //това спира бутона за основните
             imageButtonbegun3.setRolloverIcon(null); // премахва hover иконата
             imageButtonbegun3.setIcon(normalIcon3);   // връща нормалната икона
-            imageButtonbegun10.addActionListener(e1 ->{
-                new Cakes();
-                SwingUtilities.getWindowAncestor(imageButtonbegun10).dispose();
-            });
-            imageButtonbegun11.addActionListener(e1 ->{
-                new Icecream();
-                SwingUtilities.getWindowAncestor(imageButtonbegun11).dispose();
-            });
         });
-        //Напитки
         imageButtonbegun4.addActionListener(e -> {
             //бутон без алккохолни напитки  напитки
             ImageIcon originalIcon12 = new ImageIcon("Sok1.png");
@@ -372,14 +342,6 @@ public class Begun extends JFrame {
             //това спира бутона за основните
             imageButtonbegun4.setRolloverIcon(null); // премахва hover иконата
             imageButtonbegun4.setIcon(normalIcon4);   // връща нормалната икона
-            imageButtonbegun12.addActionListener(e1 ->{
-                new Drinks();
-                SwingUtilities.getWindowAncestor(imageButtonbegun12).dispose();
-            });
-            imageButtonbegun13.addActionListener(e1 ->{
-                new Alcohol();
-                SwingUtilities.getWindowAncestor(imageButtonbegun13).dispose();
-            });
         });
         setVisible(true);
 
