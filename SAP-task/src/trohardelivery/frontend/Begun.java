@@ -1,3 +1,5 @@
+package trohardelivery.frontend;
+
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -99,7 +101,7 @@ public class Begun extends JFrame {
             @Override
             public void componentResized(ComponentEvent e) {
                 int center2 = getWidth() / 2;
-                logo_trohar.setBounds(center2-150, -90, 300, 450);
+                logo_trohar.setBounds(center2-150, -95, 300, 450);
                 imageButtonbegun1.setBounds(center2-870+300, 180, 300, 200);
                 imageButtonbegun2.setBounds(center2-585+300, 180, 300, 200);
                 imageButtonbegun3.setBounds(center2-299+300, 180, 300, 200);

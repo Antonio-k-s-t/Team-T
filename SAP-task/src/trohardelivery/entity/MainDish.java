@@ -1,5 +1,7 @@
-class MainDish extends Food{
-    //TO DO: Запълване със стойности
+package trohardelivery.entity;
+
+class MainDish extends Food {
+    //TODO: Запълване със стойности
     enum MainDishSubcategory{
         
     }

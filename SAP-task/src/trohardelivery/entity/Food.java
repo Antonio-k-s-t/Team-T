@@ -1,7 +1,9 @@
+package trohardelivery.entity;
 
 import java.util.HashMap;
 
 abstract class Food{
+    //TODO: КАКВО трябва да значи продукт в този смисъл
     protected String product;
     protected String code;
     protected float price;

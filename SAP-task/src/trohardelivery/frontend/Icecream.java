@@ -1,9 +1,11 @@
+package trohardelivery.frontend;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-public class Burgar extends JFrame {
-    public Burgar() {
+public class Icecream extends JFrame {
+    public Icecream() {
         setSize(650, 500);
         getContentPane().setBackground(new Color(255, 243, 202));
         setLocationRelativeTo(null); // Центрира прозореца на екрана
@@ -17,7 +19,7 @@ public class Burgar extends JFrame {
         JLabel imageLabel1 = new JLabel(resizedIcon);
         imageLabel1.setBounds(100, 10, 200, 300); // същите размери като на scaledInstance
         add(imageLabel1);
-        //бутон за връщане
+//бУТОН ЗА ВРЪЩАНЕ В НАЧАЛОТО
         ImageIcon originalIcon1_1 = new ImageIcon("Backrest1.png");
         Image scaledNormal1_1 = originalIcon1_1.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
         ImageIcon normalIcon1_1 = new ImageIcon(scaledNormal1_1);
@@ -41,11 +43,11 @@ public class Burgar extends JFrame {
             @Override
             public void componentResized(ComponentEvent e) {
                 int center2 = getWidth() / 2;
-                imageLabel1.setBounds(center2-150, -90, 300, 450);
+                imageLabel1.setBounds(center2-150, -95, 300, 450);
                 imageButtonbegun1_1.setBounds(center2-870, -25, 180, 130);
             }
         });
-        imageButtonbegun1_1.addActionListener(e -> {
+        imageButtonbegun1_1.addActionListener(e->{
             new Begun();
             SwingUtilities.getWindowAncestor(imageButtonbegun1_1).dispose();
         });

@@ -1,3 +1,5 @@
+package trohardelivery.entity;
+
 class Dessert extends Food {
     //TO DO: Запълване със стойности
     enum DessertSubcategory{
