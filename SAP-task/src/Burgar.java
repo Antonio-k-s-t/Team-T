@@ -42,7 +42,7 @@ public class Burgar extends JFrame {
             public void componentResized(ComponentEvent e) {
                 int center2 = getWidth() / 2;
                 imageLabel1.setBounds(center2-150, -90, 300, 450);
-                imageButtonbegun1_1.setBounds(center2-850, 0, 180, 130);
+                imageButtonbegun1_1.setBounds(center2-850, -25, 180, 130);
             }
         });
         imageButtonbegun1_1.addActionListener(e -> {
