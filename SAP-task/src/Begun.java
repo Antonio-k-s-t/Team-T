@@ -40,12 +40,12 @@ public class Begun extends JFrame {
         imageButtonbegun1.setRolloverIcon(hoverIcon);
         add(imageButtonbegun1);
  //бутони за менюто-салати
-        ImageIcon originalIcon2 = new ImageIcon("Salati1.png");
-        Image scaledNormal2 = originalIcon2.getImage().getScaledInstance(400, 200, Image.SCALE_SMOOTH);
+        ImageIcon originalIcon2 = new ImageIcon("Garnituri1.png");
+        Image scaledNormal2 = originalIcon2.getImage().getScaledInstance(400, 225, Image.SCALE_SMOOTH);
         ImageIcon normalIcon2 = new ImageIcon(scaledNormal2);
 
-        ImageIcon originalHover2 = new ImageIcon("Salati2.png");
-        Image scaledHover2 = originalHover2.getImage().getScaledInstance(400, 200, Image.SCALE_SMOOTH);
+        ImageIcon originalHover2 = new ImageIcon("Garnituri2.png");
+        Image scaledHover2 = originalHover2.getImage().getScaledInstance(400, 225, Image.SCALE_SMOOTH);
         ImageIcon hoverIcon2 = new ImageIcon(scaledHover2);
 
         JButton imageButtonbegun2 = new JButton(normalIcon2);
@@ -132,9 +132,6 @@ public class Begun extends JFrame {
             pole1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
             add(pole1);
 
-
-
-
             // това е за бутона пица
             ImageIcon originalIcon6 = new ImageIcon("pizza1.png");
             Image scaledNormal6 = originalIcon6.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
@@ -176,15 +173,73 @@ public class Begun extends JFrame {
             //размеряване
             int center2_1 = getWidth() / 2;
             imageButtonbegun5.setBounds(center2_1-870+370, 290, 180, 130);
-            pole1.setBounds(center2_1-870+300, 220, 300, 200); // позиция и размер
+            pole1.setBounds(center2_1-870+300, 220, 294, 200); // позиция и размер
             imageButtonbegun6.setBounds(center2_1-870+370, 410, 180, 130);
-            pole2.setBounds(center2_1-870+300, 340, 300, 200); // позиция и размер
+            pole2.setBounds(center2_1-870+300, 340, 294, 200); // позиция и размер
             imageButtonbegun7.setBounds(center2_1-870+370, 510, 180, 130);
-            pole3.setBounds(center2_1-870+300, 440, 300, 200); // позиция и размер
+            pole3.setBounds(center2_1-870+300, 440, 294, 200); // позиция и размер
             repaint();
             //това спира бутона за основните
             imageButtonbegun1.setRolloverIcon(null); // премахва hover иконата
             imageButtonbegun1.setIcon(normalIcon);   // връща нормалната икона
+
+        });
+        imageButtonbegun2.addActionListener(e -> {
+           //бутон за салатите
+            ImageIcon originalIcon8 = new ImageIcon("Salata1.png");
+            Image scaledNormal8 = originalIcon8.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon normalIcon8 = new ImageIcon(scaledNormal8);
+
+            ImageIcon originalHover8 = new ImageIcon("Salata2.png");
+            Image scaledHover8 = originalHover8.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon hoverIcon8 = new ImageIcon(scaledHover8);
+
+            JButton imageButtonbegun8 = new JButton(normalIcon8);
+            imageButtonbegun8.setBorderPainted(false);
+            imageButtonbegun8.setContentAreaFilled(false);
+            imageButtonbegun8.setFocusPainted(false);
+            imageButtonbegun8.setRolloverIcon(hoverIcon8);
+            add(imageButtonbegun8);
+//поле на бънта за салатите
+            JPanel pole4 = new JPanel();
+            pole4.setBackground(new Color(255, 170, 84)); // цвят на фона
+            pole4.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+            add(pole4);
+
+            //бутон карофки
+            ImageIcon originalIcon9 = new ImageIcon("kartofi1.png");
+            Image scaledNormal9 = originalIcon9.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon normalIcon9 = new ImageIcon(scaledNormal9);
+
+            ImageIcon originalHover9 = new ImageIcon("Kartofi2.png");
+            Image scaledHover9 = originalHover9.getImage().getScaledInstance(160, 111, Image.SCALE_SMOOTH);
+            ImageIcon hoverIcon9 = new ImageIcon(scaledHover9);
+
+            JButton imageButtonbegun9 = new JButton(normalIcon9);
+            imageButtonbegun9.setBorderPainted(false);
+            imageButtonbegun9.setContentAreaFilled(false);
+            imageButtonbegun9.setFocusPainted(false);
+            imageButtonbegun9.setRolloverIcon(hoverIcon9);
+            add(imageButtonbegun9);
+
+//поле на бънта за салатите
+            JPanel pole5 = new JPanel();
+            pole5.setBackground(new Color(255, 170, 84)); // цвят на фона
+            pole5.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+            add(pole5);
+            //размеряване
+            int center2_2 = getWidth() / 2;
+            imageButtonbegun8.setBounds(center2_2-870+650, 290, 180, 130);
+            pole4.setBounds(center2_2-870+594, 220, 290, 200); // позиция и размер
+            imageButtonbegun9.setBounds(center2_2-870+650, 410, 180, 130);
+            pole5.setBounds(center2_2-870+594, 340, 290, 200); // позиция и размер
+            repaint();
+           //това спира бутона за основните
+            imageButtonbegun2.setRolloverIcon(null); // премахва hover иконата
+            imageButtonbegun2.setIcon(normalIcon2);   // връща нормалната икона
+        });
+
+        imageButtonbegun3.addActionListener(e -> {
 
         });
         setVisible(true);
