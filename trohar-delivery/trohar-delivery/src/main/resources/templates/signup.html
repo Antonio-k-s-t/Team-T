@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Регистрация | Trohar Delivery</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <img src="images/Trohar Delivar-modified.png" alt="Trohar Delivery Logo" class="logo" />
+      <h1>Trohar <span class="highlight">Delivery</span></h1>
+      <nav class="nav-bar">
+        <ul class="nav">
+          <li><a href="index.html">Начало</a></li>
+          <li><a href="menu.html">Меню</a></li>
+          <li><a href="cart.html">Кошница</a></li>
+        </ul>
+        <div class="user-area" id="user-area"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="login-container">
+    <h2>Регистрация</h2>
+    <form id="signup-form">
+      <label for="fullname">Име и фамилия:</label>
+      <input type="text" id="fullname" required />
+
+      <label for="newUsername">Потребителско име:</label>
+      <input type="text" id="newUsername" required />
+
+      <label for="newPassword">Парола:</label>
+      <input type="password" id="newPassword" required minlength="6" />
+
+      <label for="repeatPassword">Повтори паролата:</label>
+      <input type="password" id="repeatPassword" required />
+
+      <label for="role">Роля:</label>
+      <select id="role" required>
+        <option value="">Избери...</option>
+        <option value="client">Клиент</option>
+        <option value="employee">Служител</option>
+        <option value="restaurant">Ресторант</option>
+      </select>
+
+      <button type="submit" class="btn primary">Регистрация</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2024 Trohar Delivery</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
