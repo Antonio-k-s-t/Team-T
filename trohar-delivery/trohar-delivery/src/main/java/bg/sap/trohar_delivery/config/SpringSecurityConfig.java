@@ -14,6 +14,13 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/").permitAll()
+                        .requestMatchers("/menu").permitAll()
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/signup").permitAll()
+                        .requestMatchers("/restaurant").permitAll()
+                        .requestMatchers("/cart").permitAll()
+                        .requestMatchers("/profile").permitAll()
+                        .requestMatchers("/employee").permitAll()
                         .anyRequest().permitAll());
         return http.build();
     }
