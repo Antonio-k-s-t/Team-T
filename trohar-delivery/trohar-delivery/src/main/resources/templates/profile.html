@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="bg" xmlns:th="http://www.thymeleaf.org/">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Профил | Trohar Delivery</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
 </head>
 <body>
   <header class="site-header">
@@ -13,9 +13,9 @@
       <h1>Trohar <span class="highlight">Delivery</span></h1>
       <nav class="nav-bar">
         <ul class="nav">
-          <li><a href="index.html">Начало</a></li>
-          <li><a href="menu.html">Меню</a></li>
-          <li><a href="cart.html">Кошница</a></li>
+          <li><a th:href="@{/}">Начало</a></li>
+          <li><a th:href="@{/menu}">Меню</a></li>
+          <li><a th:href="@{/cart}">Кошница</a></li>
         </ul>
         <div class="user-area" id="user-area"></div>
       </nav>
