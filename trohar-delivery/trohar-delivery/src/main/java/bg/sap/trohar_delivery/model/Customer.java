@@ -28,6 +28,9 @@ public class Customer extends User {
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, targetEntity = Order.class)
     private List<Order> orders;
 
+    @OneToOne
+    private Cart cart;
+
     public String getName() {
         return name;
     }
@@ -66,5 +69,13 @@ public class Customer extends User {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }
