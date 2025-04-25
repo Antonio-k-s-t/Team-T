@@ -1,22 +1,24 @@
 package bg.sap.trohar_delivery.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
 @Entity
-@Table(name = "menus")
-public class Menu {
+@Table(name = "carts")
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
-    @OneToMany(mappedBy = "menu", fetch = FetchType.EAGER, targetEntity = Restaurant.class)
-    private List<Restaurant> restaurants;
-
-    @ManyToMany(mappedBy = "menus", fetch = FetchType.EAGER, targetEntity = Product.class)
+    @ManyToMany(mappedBy = "carts", fetch = FetchType.EAGER, targetEntity = Product.class)
     private List<Product> products;
+
+    @NotNull
+    @Column
+    private Double totalPrice;
 
     public Long getId() {
         return id;
@@ -26,19 +28,19 @@ public class Menu {
         this.id = id;
     }
 
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
-    }
-
     public List<Product> getProducts() {
         return products;
     }
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

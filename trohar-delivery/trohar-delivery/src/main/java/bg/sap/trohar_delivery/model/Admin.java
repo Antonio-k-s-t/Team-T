@@ -3,11 +3,9 @@ package bg.sap.trohar_delivery.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.List;
-
 @Entity
-@Table(name="customers")
-public class Customer extends User {
+@Table(name = "admins")
+public class Admin extends User {
 
     @NotNull
     @Column
@@ -19,14 +17,10 @@ public class Customer extends User {
 
     @NotNull
     @Column
-    private String address;
-
-    @NotNull
-    @Column
     private String phone;
 
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, targetEntity = Order.class)
-    private List<Order> orders;
+    @ManyToOne
+    private Restaurant restaurant;
 
     public String getName() {
         return name;
@@ -44,14 +38,6 @@ public class Customer extends User {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -60,11 +46,11 @@ public class Customer extends User {
         this.phone = phone;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

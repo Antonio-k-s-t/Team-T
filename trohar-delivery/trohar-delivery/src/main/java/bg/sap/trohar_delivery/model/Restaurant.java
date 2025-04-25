@@ -27,6 +27,9 @@ public class Restaurant {
     @ManyToMany
     private List<Order> orders;
 
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER, targetEntity = Admin.class)
+    private List<Admin> admins;
+
     public Long getId() {
         return id;
     }
@@ -65,5 +68,13 @@ public class Restaurant {
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public List<Admin> getAdmins() {
+        return admins;
+    }
+
+    public void setAdmins(List<Admin> admins) {
+        this.admins = admins;
     }
 }

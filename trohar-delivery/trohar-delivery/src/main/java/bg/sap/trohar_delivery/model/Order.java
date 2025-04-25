@@ -64,6 +64,14 @@ public class Order {
         this.driver = driver;
     }
 
+    public List<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(List<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
     public Double getTotal() {
         return total;
     }
@@ -94,13 +102,5 @@ public class Order {
 
     public void setFinishedDate(Date finishedDate) {
         this.finishedDate = finishedDate;
-    }
-
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
     }
 }
