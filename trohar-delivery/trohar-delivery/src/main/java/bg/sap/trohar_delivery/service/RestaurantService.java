@@ -10,17 +10,10 @@ import java.util.List;
 @Service
 public class RestaurantService {
     @Autowired
-    private RestaurantRepository restaurantRepository;
-
-    public Restaurant Res(Long ID, String name, String address, Menu menu, List<Order> products)
+    private final RestaurantRepository restaurantRepository;
+    public RestaurantService restaurantService(RestaurantRepository restaurantRepository)
     {
-        Restaurant restaurant = new Restaurant();
-        restaurant.setId(ID);
-        restaurant.setName(name);
-        restaurant.setAddress(address);
-        restaurant.setMenu(menu);
-        restaurant.setOrders(products);
-
-        return restaurantRepository.save(restaurant);
+        this.restaurantRepository = restaurantRepository;
     }
+
 }
