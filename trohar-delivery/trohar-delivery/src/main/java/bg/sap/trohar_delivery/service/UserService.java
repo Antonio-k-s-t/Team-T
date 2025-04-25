@@ -15,7 +15,7 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User registerUser(User user) {
-        String hashedPassword = passwordEncoder.encode(req.getPassword());
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
 
         return userRepository.save(user);
@@ -23,13 +23,15 @@ public class UserService {
 
     public List<Customer> getAllCustomers(){
         return userRepository.findAll().stream().filter(user -> user instanceof Customer)
-                .map((user -> (Customer) user).toList();
+                .map(user -> (Customer) user)
+                .toList();
     }
 
-    public List<Driver> getAllDrivers(){
-        return userRepository.findAll().stream().filter(user -> user instanceof Driver)
-                .map((user -> (Driver) user).toList();
-    }
+    public List<Driver> getAllDrivers() {
+        return userRepository.findAll().stream()
+                .filter(user -> user instanceof Driver)
+                .map(user -> (Driver) user)
+                .toList();
 
     public Optional<User> getUserByUsername(String username)
     {
