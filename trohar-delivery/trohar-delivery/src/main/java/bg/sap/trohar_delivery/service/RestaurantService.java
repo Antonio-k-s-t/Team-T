@@ -12,8 +12,15 @@ public class RestaurantService {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
-    public List<Restaurant> getRestaurantItems()
+    public Restaurant Res(Long ID, String name, String address, Menu menu, List<Order> products)
     {
-        return restaurantRepository.findAll();
+        Restaurant restaurant = new Restaurant();
+        restaurant.setId(ID);
+        restaurant.setName(name);
+        restaurant.setAddress(address);
+        restaurant.setMenu(menu);
+        restaurant.setOrders(products);
+
+        return restaurantRepository.save(restaurant);
     }
 }
