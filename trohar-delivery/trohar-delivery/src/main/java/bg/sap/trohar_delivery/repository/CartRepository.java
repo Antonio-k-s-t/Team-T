@@ -5,8 +5,8 @@ import bg.sap.trohar_delivery.model.Order;
 
 public interface CartRepository {
     List<Menu> findByUserId(Long userId);
-    void addItem(Long userId, Long productId);
-    void placeOrder(Long orderID, Driver driver, Customer customer,
+    public void addItem(Long userId, Long productId);
+    public void placeOrder(Long orderID, Driver driver, Customer customer,
                     Date createdOrderDate, Date finishedOrderDate,
                     String status, List<Restaurant> restaurants);
 }
