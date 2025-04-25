@@ -1,6 +1,6 @@
 package bg.sap.trohar_delivery.service;
 
-import bg.sap.trohar_delivery.model.Roles;
+import bg.sap.trohar_delivery.enums.Roles;
 import bg.sap.trohar_delivery.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

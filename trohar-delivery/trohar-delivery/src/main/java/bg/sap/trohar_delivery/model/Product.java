@@ -1,5 +1,6 @@
 package bg.sap.trohar_delivery.model;
 
+import bg.sap.trohar_delivery.enums.ProductTypes;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 

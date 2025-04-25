@@ -1,5 +1,6 @@
 package bg.sap.trohar_delivery.service;
 
+import bg.sap.trohar_delivery.enums.DeliveryStatus;
 import bg.sap.trohar_delivery.model.*;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package bg.sap.trohar_delivery.model;
+package bg.sap.trohar_delivery.enums;
 
 public enum ProductTypes {
     PIZZA,
