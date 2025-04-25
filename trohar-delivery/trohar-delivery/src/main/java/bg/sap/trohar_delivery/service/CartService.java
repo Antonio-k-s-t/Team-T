@@ -24,7 +24,7 @@ public class CartService {
     public Order placeOrder(Long orderID, Driver driver, Customer customer,
                            Date createdOrderDate, Date finishedOrderDate,
                            String status, List<Menu> menu) {
-        double total = menu.stream().mapToDouble(Menu::getPrice).sum();
+        double total = products.stream().mapToDouble(Menu::getPrice).sum();
         Oder order = new Order();
         order.setId(orderID);
         order.setCustomer(customer);
