@@ -33,14 +33,5 @@ public class MenuService {
     public void deleteMenu(Long id) {
         menuRepository.deleteById(id);
     }
-
-    public Menu updateMenu(Long id, Menu updatedMenu) {
-        return menuRepository.findById(id)
-                .map(existingMenu -> {
-                    existingMenu.updateFrom(updatedMenu);
-                    return menuRepository.save(existingMenu);
-                })
-                .orElseThrow(() -> new RuntimeException("Menu not found with id " + id));
-    }
 }
 
