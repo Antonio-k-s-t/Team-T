@@ -1,7 +1,5 @@
 package bg.sap.trohar_delivery.service;
 
-import bg.sap.trohar_delivery.exception.BusinessLogicException;
-import bg.sap.trohar_delivery.exception.ResourceNotFoundException;
 import bg.sap.trohar_delivery.model.Menu;
 import bg.sap.trohar_delivery.model.Restaurant;
 import bg.sap.trohar_delivery.repository.MenuRepository;
@@ -26,9 +24,9 @@ public class RestaurantService {
     }
 
     @Transactional
-    public Restaurant createRestaurant(Restaurant restaurant) {
+    public Restaurant createRestaurant(Restaurant restaurant) throws Exception {
         if (restaurantRepository.existsByNameIgnoreCase(restaurant.getName())) {
-            throw new BusinessLogicException("Restaurant with name '" + restaurant.getName() + "' already exists");
+            throw new Exception("Restaurant with name '" + restaurant.getName() + "' already exists");
         }
 
         // Ensure menu is saved first if it's new
@@ -41,14 +39,14 @@ public class RestaurantService {
     }
 
     @Transactional
-    public Restaurant updateRestaurant(Long id, Restaurant restaurantDetails) {
+    public Restaurant updateRestaurant(Long id, Restaurant restaurantDetails) throws Exception {
         Restaurant restaurant = restaurantRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Restaurant not found with id: " + id));
+                .orElseThrow(() -> new Exception("Restaurant not found with id: " + id));
 
         // Check if name is being changed to one that already exists
         if (!restaurant.getName().equalsIgnoreCase(restaurantDetails.getName()) &&
                 restaurantRepository.existsByNameIgnoreCase(restaurantDetails.getName())) {
-            throw new BusinessLogicException("Restaurant with name '" + restaurantDetails.getName() + "' already exists");
+            throw new Exception("Restaurant with name '" + restaurantDetails.getName() + "' already exists");
         }
 
         restaurant.setName(restaurantDetails.getName());
@@ -62,7 +60,6 @@ public class RestaurantService {
                 restaurant.setMenu(savedMenu);
             } else {
                 // Update existing menu
-                restaurant.getMenu().updateFrom(restaurantDetails.getMenu());
                 menuRepository.save(restaurant.getMenu());
             }
         }
@@ -76,9 +73,9 @@ public class RestaurantService {
     }
 
     @Transactional
-    public Restaurant getRestaurantById(Long id) {
+    public Restaurant getRestaurantById(Long id) throws Exception {
         return restaurantRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Restaurant not found with id: " + id));
+                .orElseThrow(() -> new Exception("Restaurant not found with id: " + id));
     }
 
     @Transactional
@@ -94,13 +91,13 @@ public class RestaurantService {
     }
 
     @Transactional
-    public void deleteRestaurant(Long id) {
+    public void deleteRestaurant(Long id) throws Exception {
         Restaurant restaurant = restaurantRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Restaurant not found with id: " + id));
+                .orElseThrow(() -> new Exception("Restaurant not found with id: " + id));
 
         // Check if restaurant has active orders
         if (!restaurant.getOrders().isEmpty()) {
-            throw new BusinessLogicException("Cannot delete restaurant with active orders");
+            throw new Exception("Cannot delete restaurant with active orders");
         }
 
         restaurantRepository.delete(restaurant);

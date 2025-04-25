@@ -1,16 +1,15 @@
 package bg.sap.trohar_delivery.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import bg.sap.trohar_delivery.model.*;
 import org.springframework.stereotype.Service;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import bg.sap.trohar_delivery.repository.CartRepository;
-import bg.sap.trohar_delivery.repository.MenuRepository;
-import bg.sap.trohar_delivery.model.Order;
+
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class CartService {
-    @Autowired
     private CartRepository cartRepository;
 
     public List<Menu> getCartItems(Long userId) {
@@ -22,17 +21,18 @@ public class CartService {
     }
 
     public Order placeOrder(Long orderID, Driver driver, Customer customer,
-                           Date createdOrderDate, Date finishedOrderDate,
-                           String status, List<Menu> menu) {
-        double total = products.stream().mapToDouble(Menu::getPrice).sum();
-        Oder order = new Order();
+                            Date createdOrderDate, Date finishedOrderDate,
+                            DeliveryStatus status, List<Restaurant> restaurants, List<Menu> menu) {
+        //double total = menu.stream().mapToDouble(Menu::getPrice).sum();
+        Order order = new Order();
         order.setId(orderID);
         order.setCustomer(customer);
         order.setDriver(driver);
-        order.setTotal(total);
+        //order.setTotal(total);
         order.setCreatedDate(createdOrderDate);
         order.setFinishedDate(finishedOrderDate);
         order.setStatus(status);
         order.setRestaurants(restaurants);
-
+        return order;
+    }
 }

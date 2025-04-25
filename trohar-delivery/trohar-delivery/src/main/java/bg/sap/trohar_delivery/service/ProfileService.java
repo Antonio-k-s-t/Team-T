@@ -1,5 +1,7 @@
 package bg.sap.trohar_delivery.service;
 
+import bg.sap.trohar_delivery.model.Roles;
+import bg.sap.trohar_delivery.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +14,12 @@ public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
 
-    public String getUserRole(String username) {
+    public Roles getUserRole(String username) throws Exception {
         Optional<User> user = profileRepository.findByUsername(username);
         if (user.isPresent()) {
             return user.get().getRole();
         } else {
-            return "USER NOT FOUND";
+            throw new Exception("Role not found");
         }
     }
 
