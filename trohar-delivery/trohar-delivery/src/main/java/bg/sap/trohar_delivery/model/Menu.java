@@ -41,12 +41,5 @@ public class Menu {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
-
-    public void updateFrom(Menu other) {
-        this.item_name = other.getItem_name();
-        this.item_description = other.getItem_description();
-        this.price = other.getPrice();
-    }
-
 }
 

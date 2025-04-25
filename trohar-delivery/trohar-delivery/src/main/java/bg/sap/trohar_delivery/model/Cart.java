@@ -16,6 +16,9 @@ public class Cart {
     @ManyToMany(mappedBy = "carts", fetch = FetchType.EAGER, targetEntity = Product.class)
     private List<Product> products;
 
+    @OneToOne(mappedBy = "cart", fetch = FetchType.EAGER, targetEntity = Customer.class)
+    private Customer customer;
+
     @NotNull
     @Column
     private Double totalPrice;
@@ -42,5 +45,13 @@ public class Cart {
 
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
