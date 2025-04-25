@@ -67,4 +67,12 @@ public class Menu {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public void updateFrom(Menu other) {
+        this.item_name = other.getItem_name();
+        this.item_description = other.getItem_description();
+        this.price = other.getPrice();
+    }
+
 }
+
