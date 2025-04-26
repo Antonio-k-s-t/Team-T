@@ -18,6 +18,10 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
+    public OrderRepository getOrderRepository() {
+        return this.orderRepository;
+    }
+
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
