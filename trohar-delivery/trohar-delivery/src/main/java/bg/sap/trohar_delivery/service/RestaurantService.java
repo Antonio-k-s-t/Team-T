@@ -104,8 +104,8 @@ public class RestaurantService {
     }
 
     @Transactional
-    public List<Restaurant> getRestaurantsByMenuItem(Long menuItemId) {
-        return restaurantRepository.findByMenuItemId(menuItemId);
+    public List<Restaurant> getRestaurantsByMenuItem(Long menuId) {
+        return restaurantRepository.findByMenuId(menuId);
     }
 
     @Transactional

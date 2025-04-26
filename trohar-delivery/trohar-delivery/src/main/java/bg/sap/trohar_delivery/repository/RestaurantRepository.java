@@ -17,8 +17,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long>{
 
     List<Restaurant> findByAddressContainingIgnoreCase(String address);
 
-    @Query("SELECT r FROM Restaurant r JOIN r.menu m JOIN m.items i WHERE i.id = :menuItemId")
-    List<Restaurant> findByMenuItemId(@Param("menuItemId") Long menuItemId);
+    List<Restaurant> findByMenuId(Long menuItemId);
 
     @Query("SELECT DISTINCT r FROM Restaurant r JOIN r.orders o WHERE o.status = :status")
     List<Restaurant> findByOrderStatus(@Param("status") String status);
