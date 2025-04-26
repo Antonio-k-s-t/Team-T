@@ -71,7 +71,7 @@ public class OrderController {
 
     @GetMapping("/restaurant/{restaurantId}")
     public String getOrdersByRestaurant(@PathVariable Long restaurantId, Model model) {
-        model.addAttribute("orders", orderService.getOrderRepository().findByRestaurantId(restaurantId));
+        model.addAttribute("orders", orderService.getOrderRepository().findByRestaurantsId(restaurantId));
         return "orders/list";
     }
 
