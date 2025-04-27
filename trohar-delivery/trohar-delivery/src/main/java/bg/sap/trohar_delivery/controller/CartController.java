@@ -1,6 +1,6 @@
 package bg.sap.trohar_delivery.controller;
 
-import bg.sap.trohar_delivery.model.Menu;
+import bg.sap.trohar_delivery.model.Product;
 import bg.sap.trohar_delivery.service.CartService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +20,8 @@ public class CartController {
 
     @GetMapping
     public String viewCart(Model model) {
-        Long userId = 1L;
-        List<Menu> cartItems = cartService.getCartItems(userId);
+        Long customerId = 1L;
+        List<Product> cartItems = cartService.getCartItems(customerId);
         model.addAttribute("cartItems", cartItems);
         return "cart";
     }

@@ -1,39 +1,74 @@
 package bg.sap.trohar_delivery.service;
 
-import bg.sap.trohar_delivery.enums.DeliveryStatus;
-import bg.sap.trohar_delivery.model.*;
+import bg.sap.trohar_delivery.model.Cart;
+import bg.sap.trohar_delivery.model.Product;
+import bg.sap.trohar_delivery.repository.CartRepository;
+import bg.sap.trohar_delivery.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import bg.sap.trohar_delivery.repository.CartRepository;
-
-import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 public class CartService {
-    private CartRepository cartRepository;
 
-    public List<Menu> getCartItems(Long userId) {
-        return cartRepository.findByUserId(userId);
+    private final CartRepository cartRepository;
+    private final ProductRepository productRepository;
+
+    public CartService(CartRepository cartRepository, ProductRepository productRepository) {
+        this.cartRepository = cartRepository;
+        this.productRepository = productRepository;
     }
 
-    public void addItem(Long userId, Long productId) {
-        cartRepository.addItem(userId, productId);
+    public List<Product> getCartItems(Long customerId) {
+        Cart cart = cartRepository.findByCustomerId(customerId);
+        if (cart == null) {
+            throw new RuntimeException("Cart not found for customer id: " + customerId);
+        }
+        return cart.getProducts();
     }
 
-    public Order placeOrder(Long orderID, Driver driver, Customer customer,
-                            Date createdOrderDate, Date finishedOrderDate,
-                            DeliveryStatus status, List<Restaurant> restaurants, List<Menu> menu) {
-        //double total = menu.stream().mapToDouble(Menu::getPrice).sum();
-        Order order = new Order();
-        order.setId(orderID);
-        order.setCustomer(customer);
-        order.setDriver(driver);
-        //order.setTotal(total);
-        order.setCreatedDate(createdOrderDate);
-        order.setFinishedDate(finishedOrderDate);
-        order.setStatus(status);
-        order.setRestaurants(restaurants);
-        return order;
+    public void addItem(Long customerId, Long productId) {
+        Cart cart = cartRepository.findByCustomerId(customerId);
+        if (cart == null) {
+            throw new RuntimeException("Cart not found for customer id: " + customerId);
+        }
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
+
+        cart.getProducts().add(product);
+
+        if (cart.getTotalPrice() == null) {
+            cart.setTotalPrice(0.0);
+        }
+        cart.setTotalPrice(cart.getTotalPrice() + product.getPrice());
+
+        cartRepository.save(cart);
+    }
+
+    public void removeItem(Long customerId, Long productId) {
+        Cart cart = cartRepository.findByCustomerId(customerId);
+        if (cart == null) {
+            throw new RuntimeException("Cart not found for customer id: " + customerId);
+        }
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
+
+        if (cart.getProducts().remove(product)) {
+            cart.setTotalPrice(cart.getTotalPrice() - product.getPrice());
+            cartRepository.save(cart);
+        }
+    }
+
+    public void clearCart(Long customerId) {
+        Cart cart = cartRepository.findByCustomerId(customerId);
+        if (cart != null) {
+            cart.getProducts().clear();
+            cart.setTotalPrice(0.0);
+            cartRepository.save(cart);
+        }
     }
 }
