@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/menus")
+@RequestMapping("/menu")
 public class MenuController {
 
     private final MenuService menuService;
@@ -18,7 +18,7 @@ public class MenuController {
 
     @GetMapping
     public String getAllMenus(Model model) {
-        model.addAttribute("menus", menuService.getAllMenus());
+        model.addAttribute("menu", menuService.getAllMenus());
         return "menu";
     }
 
@@ -37,7 +37,7 @@ public class MenuController {
     @PostMapping
     public String createMenu(@ModelAttribute Menu menu) {
         menuService.createMenu(menu);
-        return "redirect:/menus";
+        return "redirect:/menu";
     }
 
     @GetMapping("/{id}/edit")
@@ -49,13 +49,13 @@ public class MenuController {
     @PostMapping("/{id}")
     public String updateMenu(@PathVariable Long id, @ModelAttribute Menu menu) {
         menuService.updateMenuBasicInfo(id, menu);
-        return "redirect:/menus/" + id;
+        return "redirect:/menu/" + id;
     }
 
     @PostMapping("/{id}/delete")
     public String deleteMenu(@PathVariable Long id) {
         menuService.deleteMenu(id);
-        return "redirect:/menus";
+        return "redirect:/menu";
     }
 
     @PostMapping("/{menuId}/products/{productId}")
@@ -63,7 +63,7 @@ public class MenuController {
             @PathVariable Long menuId,
             @PathVariable Long productId) {
         menuService.addProductToMenu(menuId, productId);
-        return "redirect:/menus/" + menuId;
+        return "redirect:/menu/" + menuId;
     }
 
     @PostMapping("/{menuId}/products/{productId}/remove")
@@ -71,7 +71,7 @@ public class MenuController {
             @PathVariable Long menuId,
             @PathVariable Long productId) {
         menuService.removeProductFromMenu(menuId, productId);
-        return "redirect:/menus/" + menuId;
+        return "redirect:/menu/" + menuId;
     }
 
     @PostMapping("/{menuId}/restaurants/{restaurantId}")
@@ -79,7 +79,7 @@ public class MenuController {
             @PathVariable Long menuId,
             @PathVariable Long restaurantId) {
         menuService.addRestaurantToMenu(menuId, restaurantId);
-        return "redirect:/menus/" + menuId;
+        return "redirect:/menu/" + menuId;
     }
 
     @PostMapping("/{menuId}/restaurants/{restaurantId}/remove")
@@ -87,14 +87,14 @@ public class MenuController {
             @PathVariable Long menuId,
             @PathVariable Long restaurantId) {
         menuService.removeRestaurantFromMenu(menuId, restaurantId);
-        return "redirect:/menus/" + menuId;
+        return "redirect:/menu/" + menuId;
     }
 
     @GetMapping("/restaurant/{restaurantId}")
     public String getMenusByRestaurant(
             @PathVariable Long restaurantId,
             Model model) {
-        model.addAttribute("menus",
+        model.addAttribute("menu",
                 menuService.getMenusByRestaurant(restaurantId));
         return "menu/list";
     }
@@ -103,7 +103,7 @@ public class MenuController {
     public String getMenusByProduct(
             @PathVariable Long productId,
             Model model) {
-        model.addAttribute("menus",
+        model.addAttribute("menu",
                 menuService.getMenusByProduct(productId));
         return "menu/list";
     }

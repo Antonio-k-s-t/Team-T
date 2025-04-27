@@ -23,13 +23,14 @@ public class CartController {
         Long customerId = 1L;
         List<Product> cartItems = cartService.getCartItems(customerId);
         model.addAttribute("cartItems", cartItems);
+
         return "cart";
     }
 
     @PostMapping("/add")
     public String addToCart(@RequestParam Long productId) {
-        Long userId = 1L;
-        cartService.addItem(userId, productId);
+        Long customerId = 1L;
+        cartService.addItem(customerId, productId);
         return "redirect:/cart";
     }
 }

@@ -13,6 +13,9 @@ public interface MenuRepository extends JpaRepository<Menu,Long>{
 
     List<Menu> findByProductsId(Long productId);
 
-    @Query("SELECT DISTINCT m FROM Menu m LEFT JOIN FETCH m.restaurants LEFT JOIN FETCH m.products")
-    List<Menu> findAllWithRelationships();
+    @Query("SELECT DISTINCT m FROM Menu m LEFT JOIN FETCH m.restaurants")
+    List<Menu> findAllWithRestaurants();
+
+    @Query("SELECT DISTINCT m FROM Menu m LEFT JOIN FETCH m.products")
+    List<Menu> findAllWithProducts();
 }

@@ -7,6 +7,7 @@ import bg.sap.trohar_delivery.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -24,7 +25,7 @@ public class CartService {
     public List<Product> getCartItems(Long customerId) {
         Cart cart = cartRepository.findByCustomerId(customerId);
         if (cart == null) {
-            throw new RuntimeException("Cart not found for customer id: " + customerId);
+            return Collections.emptyList();
         }
         return cart.getProducts();
     }
