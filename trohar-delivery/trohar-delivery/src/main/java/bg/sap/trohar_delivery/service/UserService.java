@@ -1,12 +1,10 @@
 package bg.sap.trohar_delivery.service;
 
-import bg.sap.trohar_delivery.model.Admin;
-import bg.sap.trohar_delivery.model.Customer;
-import bg.sap.trohar_delivery.model.Driver;
-import bg.sap.trohar_delivery.model.User;
+import bg.sap.trohar_delivery.model.*;
 import bg.sap.trohar_delivery.repository.AdminRepository;
 import bg.sap.trohar_delivery.repository.CustomerRepository;
 import bg.sap.trohar_delivery.repository.DriverRepository;
+import bg.sap.trohar_delivery.repository.RestaurantRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,15 +19,17 @@ public class UserService {
     private final CustomerRepository customerRepository;
     private final DriverRepository driverRepository;
     private final AdminRepository adminRepository;
+    private final RestaurantRepository restaurantRepository;
     private final PasswordEncoder passwordEncoder;
 
     public UserService(CustomerRepository customerRepository,
                        DriverRepository driverRepository,
-                       AdminRepository adminRepository,
+                       AdminRepository adminRepository, RestaurantRepository restaurantRepository,
                        PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
         this.driverRepository = driverRepository;
         this.adminRepository = adminRepository;
+        this.restaurantRepository = restaurantRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -43,7 +43,10 @@ public class UserService {
             return driverRepository.save((Driver) user);
         } else if (user instanceof Admin) {
             return adminRepository.save((Admin) user);
-        } else {
+
+        } else if (user instanceof Restaurant) {
+            return restaurantRepository.save((Restaurant) user);
+        }else {
             throw new IllegalArgumentException("Unknown user type!");
         }
     }

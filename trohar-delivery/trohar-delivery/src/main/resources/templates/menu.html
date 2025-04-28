@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="_csrf" th:content="${_csrf.token}" />
+  <meta name="_csrf_header" th:content="${_csrf.headerName}" />
   <title>Меню | Trohar Delivery</title>
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
@@ -33,7 +35,7 @@
     <p>&copy; 2024 Trohar Delivery. Всички права запазени.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 </html>
 

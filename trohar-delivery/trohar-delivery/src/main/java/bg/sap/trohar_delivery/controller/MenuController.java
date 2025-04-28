@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
@@ -20,6 +22,12 @@ public class MenuController {
     public String getAllMenus(Model model) {
         model.addAttribute("menu", menuService.getAllMenus());
         return "menu";
+    }
+
+    @GetMapping("/api/menu")
+    @ResponseBody
+    public List<Menu> getMenuItemsJson() {
+        return menuService.getAllMenus();
     }
 
     @GetMapping("/{id}")

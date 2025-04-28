@@ -3,6 +3,7 @@ package bg.sap.trohar_delivery.controller;
 import bg.sap.trohar_delivery.enums.Roles;
 import bg.sap.trohar_delivery.model.*;
 import bg.sap.trohar_delivery.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 
     private final UserService userService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/login")
@@ -29,7 +32,7 @@ public class UserController {
                                Model model) {
         try {
             User user = userService.getUserByUsername(username);
-            if (user != null && user.getPassword().equals(password)) {
+            if (user != null && passwordEncoder.matches(password, user.getPassword())) {
                 model.addAttribute("user", user);
                 return "redirect:/profile";
             } else {
@@ -41,6 +44,7 @@ public class UserController {
             return "login";
         }
     }
+
 
     @GetMapping("/signup")
     public String showSignupPage() {
@@ -74,13 +78,17 @@ public class UserController {
                     user = new Driver();
                     userRole = Roles.driver;
                     break;
+                case "restaurant":
+                    user = new Restaurant();
+                    userRole = Roles.restaurant;
+                    break;
                 default:
                     model.addAttribute("error", "Invalid role selected");
                     return "signup";
             }
 
             user.setUsername(newUsername);
-            user.setPassword(newPassword);
+            user.setPassword(passwordEncoder.encode(newPassword));
             user.setRole(userRole);
 
             userService.registerUser(user);

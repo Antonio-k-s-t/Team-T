@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "restaurants")
-public class Restaurant {
+public class Restaurant extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column

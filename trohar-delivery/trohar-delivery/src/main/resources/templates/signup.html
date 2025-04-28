@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="_csrf" th:content="${_csrf.token}" />
+  <meta name="_csrf_header" th:content="${_csrf.headerName}" />
   <title>Регистрация | Trohar Delivery</title>
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
@@ -25,6 +27,8 @@
   <main class="login-container">
     <h2>Регистрация</h2>
     <form id="signup-form">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
       <label for="fullname">Име и фамилия:</label>
       <input type="text" id="fullname" required />
 
@@ -53,7 +57,7 @@
     <p>&copy; 2024 Trohar Delivery</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 </html>
 

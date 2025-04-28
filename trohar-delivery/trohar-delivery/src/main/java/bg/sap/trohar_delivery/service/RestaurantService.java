@@ -3,8 +3,6 @@ package bg.sap.trohar_delivery.service;
 import bg.sap.trohar_delivery.model.Menu;
 import bg.sap.trohar_delivery.model.Restaurant;
 import bg.sap.trohar_delivery.repository.MenuRepository;
-import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bg.sap.trohar_delivery.repository.RestaurantRepository;
@@ -13,7 +11,6 @@ import java.util.List;
 
 @Service
 public class RestaurantService {
-    @Autowired
     private final RestaurantRepository restaurantRepository;
     private final MenuRepository menuRepository;
 
@@ -23,7 +20,6 @@ public class RestaurantService {
         this.menuRepository = menuRepository;
     }
 
-    @Transactional
     public Restaurant createRestaurant(Restaurant restaurant) throws Exception {
         if (restaurantRepository.existsByNameIgnoreCase(restaurant.getName())) {
             throw new Exception("Restaurant with name '" + restaurant.getName() + "' already exists");
@@ -38,7 +34,6 @@ public class RestaurantService {
         return restaurantRepository.save(restaurant);
     }
 
-    @Transactional
     public Restaurant updateRestaurant(Long id, Restaurant restaurantDetails) throws Exception {
         Restaurant restaurant = restaurantRepository.findById(id)
                 .orElseThrow(() -> new Exception("Restaurant not found with id: " + id));
@@ -67,18 +62,15 @@ public class RestaurantService {
         return restaurantRepository.save(restaurant);
     }
 
-    @Transactional
     public List<Restaurant> getAllRestaurants() {
         return restaurantRepository.findAll();
     }
 
-    @Transactional
     public Restaurant getRestaurantById(Long id) throws Exception {
         return restaurantRepository.findById(id)
                 .orElseThrow(() -> new Exception("Restaurant not found with id: " + id));
     }
 
-    @Transactional
     public List<Restaurant> searchRestaurants(String name, String address) {
         if (name != null && address != null) {
             return restaurantRepository.findByNameContainingIgnoreCaseAndAddressContainingIgnoreCase(name, address);
@@ -90,7 +82,6 @@ public class RestaurantService {
         return restaurantRepository.findAll();
     }
 
-    @Transactional
     public void deleteRestaurant(Long id) throws Exception {
         Restaurant restaurant = restaurantRepository.findById(id)
                 .orElseThrow(() -> new Exception("Restaurant not found with id: " + id));
@@ -103,12 +94,10 @@ public class RestaurantService {
         restaurantRepository.delete(restaurant);
     }
 
-    @Transactional
     public List<Restaurant> getRestaurantsByMenuItem(Long menuId) {
         return restaurantRepository.findByMenuId(menuId);
     }
 
-    @Transactional
     public List<Restaurant> getRestaurantsByOrderStatus(String status) {
         return restaurantRepository.findByOrderStatus(status);
     }

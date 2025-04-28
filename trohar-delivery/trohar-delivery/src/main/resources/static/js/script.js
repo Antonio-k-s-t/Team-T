@@ -3,6 +3,9 @@ const loggedUser = localStorage.getItem("loggedInUser");
 const currentPage = window.location.pathname.split("/").pop();
 let allRestaurants = JSON.parse(localStorage.getItem("restaurants") || "[]");
 let allOrders = JSON.parse(localStorage.getItem("orders") || "[]");
+const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+
 // --- Навигация: Покажи потребител или бутони ---
 if (userArea) {
   if (loggedUser) {
@@ -19,8 +22,8 @@ if (userArea) {
     });
   } else {
     userArea.innerHTML = `
-      <a href="login.html" class="btn small">Вход</a>
-      <a href="signup.html" class="btn small">Регистрация</a>
+      <a href="login" class="btn small">Вход</a>
+      <a href="signup" class="btn small">Регистрация</a>
     `;
   }
 }
@@ -45,82 +48,145 @@ if (protectedPages[currentPage]) {
     }
   }
 }
+
 // --- Регистрация ---
-const signupForm = document.getElementById("signup-form");
-if (signupForm) {
-  signupForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const fullName = document.getElementById("fullname").value.trim();
-    const username = document.getElementById("newUsername").value.trim();
-    const password = document.getElementById("newPassword").value;
-    const repeat = document.getElementById("repeatPassword").value;
-    const role = document.getElementById("role").value;
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById("signup-form");
 
-    if (!fullName || !username || !password || !repeat || !role) {
-      alert("Моля, попълнете всички полета.");
-      return;
+    if (form) {
+        form.addEventListener("submit", async function(e) {
+
+            e.preventDefault();
+
+            const fullname = document.getElementById("fullname").value;
+            const newUsername = document.getElementById("newUsername").value;
+            const newPassword = document.getElementById("newPassword").value;
+            const repeatPassword = document.getElementById("repeatPassword").value;
+            const role = document.getElementById("role").value;
+
+            // Password mismatch check
+            if (newPassword !== repeatPassword) {
+                alert("Паролите не съвпадат.");
+                return;
+            }
+
+            try {
+                // Sending data to the server via POST request
+                const response = await fetch("/signup", {
+                    method: "POST",
+                    headers: {
+                        [csrfHeader]: csrfToken,
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `fullname=${encodeURIComponent(fullname)}&newUsername=${encodeURIComponent(newUsername)}&newPassword=${encodeURIComponent(newPassword)}&role=${encodeURIComponent(role)}`
+                });
+
+                // Check if the response is successful
+                if (response.ok) {
+                    alert("Регистрация успешна! Пренасочваме ви към входа...");
+                    setTimeout(() => {
+                        window.location.href = "/login";  // Redirecting to login page
+                    }, 1500);
+                } else {
+                    // If there's an error from the server
+                    const errorMessage = await response.text();
+                    alert(errorMessage);  // Show server error message in an alert
+                }
+            } catch (error) {
+                // In case of network or other errors
+                console.error("Sign-up error:", error);
+                alert("Възникна грешка. Моля, опитайте отново.");
+            }
+        });
+    } else {
+        console.error("Signup form not found");
     }
+});
 
-    if (password !== repeat) {
-      alert("Паролите не съвпадат.");
-      return;
-    }
-
-    const userData = { fullName, username, password, role };
-    localStorage.setItem("user_" + username, JSON.stringify(userData));
-    localStorage.setItem("loggedInUser", username);
-
-    alert("Успешна регистрация!");
-    window.location.href = "index.html";
-  });
-}
 
 // --- Вход ---
-const loginForm = document.getElementById("login-form");
-if (loginForm) {
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value;
+document.addEventListener('DOMContentLoaded', function () {
+  const loginForm = document.getElementById('login-form');
 
-    const userData = JSON.parse(localStorage.getItem("user_" + username));
-    if (!userData || userData.password !== password) {
-      alert("Грешно потребителско име или парола.");
+  if (loginForm) {
+    loginForm.addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const usernameField = document.getElementById("username");
+      const passwordField = document.getElementById("password");
+
+      const username = usernameField.value.trim();
+      const password = passwordField.value;
+
+      try {
+        const formData = new URLSearchParams();
+        formData.append('username', username);
+        formData.append('password', password);
+
+        const response = await fetch('/login', {
+          method: 'POST',
+          headers: {
+            [csrfHeader]: csrfToken,
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: formData
+        });
+
+        if (response.redirected) {
+          window.location.href = response.url;
+        } else {
+          const html = await response.text();
+          document.body.innerHTML = html;
+          alert('Грешно потребителско име или парола.');
+        }
+      } catch (error) {
+        console.error('Login failed:', error);
+      }
+    });
+  }
+});
+
+// --- Зареждане на менюто ---
+document.addEventListener('DOMContentLoaded', async function () {
+  try {
+    const response = await fetch('/menu/api/menu');
+    const menuItems = await response.json();
+
+    const menuContainer = document.getElementById('menu-items');
+    if (!menuContainer) {
+      console.error('Menu container not found!');
       return;
     }
 
-    localStorage.setItem("loggedInUser", username);
-    alert("Добре дошъл, " + userData.fullName);
+    menuContainer.innerHTML = ''; // Clear any existing content
 
-    // Пренасочване според роля
-    if (userData.role === "client") {
-      window.location.href = "menu.html";
-    } else if (userData.role === "employee") {
-      window.location.href = "employee.html";
-    } else if (userData.role === "restaurant") {
-      window.location.href = "restaurant.html";
-    } else {
-      window.location.href = "index.html";
+    if (menuItems.length === 0) {
+      menuContainer.innerHTML = '<p>Няма налични продукти в менюто.</p>';
+      return;
     }
-  });
-}
-// --- Зареждане на менюто ---
-if (document.getElementById("menu-items")) {
-  let html = "";
-  allRestaurants.forEach(r => {
-    html += `<h3>${r.name}</h3>`;
-    r.products.forEach(p => {
-      html += `
-        <div class="menu-item">
-          <h4>${p.name}</h4>
-          <p>${p.price.toFixed(2)} лв</p>
-          <button onclick="addToCart('${p.name}', ${p.price}, '${r.name}')" class="btn">Добави</button>
-        </div>
+
+    menuItems.forEach(item => {
+      const menuItemDiv = document.createElement('div');
+      menuItemDiv.classList.add('menu-item');
+
+      menuItemDiv.innerHTML = `
+        <h3>${item.name}</h3>
+        <p>${item.description}</p>
+        <p><strong>Цена:</strong> ${item.price} лв</p>
+        <button class="btn add-to-cart" data-item-id="${item.id}">Добави в кошницата</button>
       `;
+
+      menuContainer.appendChild(menuItemDiv);
     });
-  });
-  document.getElementById("menu-items").innerHTML = html;
-}
+  } catch (error) {
+    console.error('Error loading menu items:', error);
+    const menuContainer = document.getElementById('menu-items');
+    if (menuContainer) {
+      menuContainer.innerHTML = '<p>Неуспешно зареждане на менюто. Моля, опитайте отново.</p>';
+    }
+  }
+});
+
 
 // --- Добавяне към количка ---
 function addToCart(name, price, restaurant) {

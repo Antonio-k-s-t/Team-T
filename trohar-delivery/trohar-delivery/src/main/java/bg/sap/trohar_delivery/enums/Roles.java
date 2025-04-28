@@ -2,6 +2,7 @@ package bg.sap.trohar_delivery.enums;
 
 public enum Roles {
     customer,
-    driver,
-    admin
+    restaurant,
+    admin,
+    driver
 }
