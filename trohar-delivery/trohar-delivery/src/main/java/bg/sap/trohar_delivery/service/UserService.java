@@ -4,12 +4,10 @@ import bg.sap.trohar_delivery.model.*;
 import bg.sap.trohar_delivery.repository.AdminRepository;
 import bg.sap.trohar_delivery.repository.CustomerRepository;
 import bg.sap.trohar_delivery.repository.DriverRepository;
-import bg.sap.trohar_delivery.repository.RestaurantRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,16 +29,16 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User registerUser(User user) {
+    public void registerUser(User user) {
         String hashedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(hashedPassword);
 
         if (user instanceof Customer) {
-            return customerRepository.save((Customer) user);
+            customerRepository.save((Customer) user);
         } else if (user instanceof Driver) {
-            return driverRepository.save((Driver) user);
+            driverRepository.save((Driver) user);
         } else if (user instanceof Admin) {
-            return adminRepository.save((Admin) user);
+            adminRepository.save((Admin) user);
 
         }else {
             throw new IllegalArgumentException("Unknown user type!");

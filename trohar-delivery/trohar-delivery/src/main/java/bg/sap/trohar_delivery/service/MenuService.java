@@ -26,8 +26,8 @@ public class MenuService {
         this.productRepository = productRepository;
     }
 
-    public Menu createMenu(Menu menu) {
-        return menuRepository.save(menu);
+    public void createMenu(Menu menu) {
+        menuRepository.save(menu);
     }
 
     public List<Menu> getAllMenus()
@@ -58,7 +58,7 @@ public class MenuService {
         return menus.isEmpty() ? new ArrayList<>() : menus;
     }
 
-    public Menu updateMenuBasicInfo(Long id, Menu menuDetails) {
+    public void updateMenuBasicInfo(Long id, Menu menuDetails) {
         Menu menu = menuRepository.findById(id)
                 .orElse(null);
 
@@ -69,9 +69,8 @@ public class MenuService {
             if (menuDetails.getProducts() != null) {
                 menu.setProducts(menuDetails.getProducts());
             }
-            return menuRepository.save(menu);
+            menuRepository.save(menu);
         }
-        return null;
     }
 
     public void deleteMenu(Long id) {
@@ -86,7 +85,7 @@ public class MenuService {
         }
     }
 
-    public Menu addRestaurantToMenu(Long menuId, Long restaurantId) {
+    public void addRestaurantToMenu(Long menuId, Long restaurantId) {
         Menu menu = menuRepository.findById(menuId)
                 .orElse(null);
         Restaurant restaurant = restaurantRepository.findById(restaurantId)
@@ -96,12 +95,11 @@ public class MenuService {
             menu.getRestaurants().add(restaurant);
             restaurant.setMenu(menu);
 
-            return menuRepository.save(menu);
+            menuRepository.save(menu);
         }
-        return null;
     }
 
-    public Menu addProductToMenu(Long menuId, Long productId) {
+    public void addProductToMenu(Long menuId, Long productId) {
         Menu menu = menuRepository.findById(menuId)
                 .orElse(null);
         Product product = productRepository.findById(productId)
@@ -111,12 +109,11 @@ public class MenuService {
             menu.getProducts().add(product);
             product.getMenus().add(menu);
 
-            return menuRepository.save(menu);
+            menuRepository.save(menu);
         }
-        return null;
     }
 
-    public Menu removeRestaurantFromMenu(Long menuId, Long restaurantId) {
+    public void removeRestaurantFromMenu(Long menuId, Long restaurantId) {
         Menu menu = menuRepository.findById(menuId)
                 .orElse(null);
         Restaurant restaurant = restaurantRepository.findById(restaurantId)
@@ -125,12 +122,11 @@ public class MenuService {
         if (menu != null && restaurant != null) {
             menu.getRestaurants().remove(restaurant);
             restaurant.setMenu(null);
-            return menuRepository.save(menu);
+            menuRepository.save(menu);
         }
-        return null;
     }
 
-    public Menu removeProductFromMenu(Long menuId, Long productId) {
+    public void removeProductFromMenu(Long menuId, Long productId) {
         Menu menu = menuRepository.findById(menuId)
                 .orElse(null);
         Product product = productRepository.findById(productId)
@@ -140,8 +136,7 @@ public class MenuService {
             menu.getProducts().remove(product);
             product.getMenus().remove(menu);
 
-            return menuRepository.save(menu);
+            menuRepository.save(menu);
         }
-        return null;
     }
 }

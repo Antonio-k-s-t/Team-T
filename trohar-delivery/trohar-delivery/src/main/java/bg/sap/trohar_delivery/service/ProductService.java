@@ -7,7 +7,6 @@ import bg.sap.trohar_delivery.model.Product;
 import bg.sap.trohar_delivery.repository.CartRepository;
 import bg.sap.trohar_delivery.repository.MenuRepository;
 import bg.sap.trohar_delivery.repository.ProductRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +25,8 @@ public class ProductService {
         this.cartRepository = cartRepository;
     }
 
-    public Product createProduct(Product product) {
-        return productRepository.save(product);
+    public void createProduct(Product product) {
+        productRepository.save(product);
     }
 
     public List<Product> getAllProducts() {
@@ -55,7 +54,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product updateProduct(Long id, Product productDetails) {
+    public void updateProduct(Long id, Product productDetails) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
 
@@ -72,7 +71,7 @@ public class ProductService {
             product.setPrice(productDetails.getPrice());
         }
 
-        return productRepository.save(product);
+        productRepository.save(product);
     }
 
     public void deleteProduct(Long id) {
@@ -86,7 +85,7 @@ public class ProductService {
         productRepository.delete(product);
     }
 
-    public Product addMenuToProduct(Long productId, Long menuId) {
+    public void addMenuToProduct(Long productId, Long menuId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
 
@@ -98,10 +97,10 @@ public class ProductService {
             menu.getProducts().add(product);
         }
 
-        return productRepository.save(product);
+        productRepository.save(product);
     }
 
-    public Product removeMenuFromProduct(Long productId, Long menuId) {
+    public void removeMenuFromProduct(Long productId, Long menuId) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
 
@@ -111,7 +110,7 @@ public class ProductService {
         product.getMenus().remove(menu);
         menu.getProducts().remove(product);
 
-        return productRepository.save(product);
+        productRepository.save(product);
     }
 
     public Product removeCartFromProduct(Long productId, Long cartId) {
