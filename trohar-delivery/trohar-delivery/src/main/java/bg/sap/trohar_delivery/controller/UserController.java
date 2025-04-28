@@ -68,19 +68,15 @@ public class UserController {
             switch (role.toLowerCase()) {
                 case "customer":
                     user = new Customer();
-                    userRole = Roles.customer;
+                    userRole = Roles.CUSTOMER;
                     break;
                 case "admin":
                     user = new Admin();
-                    userRole = Roles.admin;
+                    userRole = Roles.ADMIN;
                     break;
                 case "driver":
                     user = new Driver();
-                    userRole = Roles.driver;
-                    break;
-                case "restaurant":
-                    user = new Restaurant();
-                    userRole = Roles.restaurant;
+                    userRole = Roles.DRIVER;
                     break;
                 default:
                     model.addAttribute("error", "Invalid role selected");

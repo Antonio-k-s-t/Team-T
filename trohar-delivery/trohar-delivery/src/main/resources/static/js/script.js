@@ -3,8 +3,8 @@ const loggedUser = localStorage.getItem("loggedInUser");
 const currentPage = window.location.pathname.split("/").pop();
 let allRestaurants = JSON.parse(localStorage.getItem("restaurants") || "[]");
 let allOrders = JSON.parse(localStorage.getItem("orders") || "[]");
-const csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
-const csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+const csrfToken = document.querySelector('meta[name="_csrf"]')?.content;
+const csrfHeader = document.querySelector('meta[name="_csrf_header"]')?.content;
 
 // --- Навигация: Покажи потребител или бутони ---
 if (userArea) {

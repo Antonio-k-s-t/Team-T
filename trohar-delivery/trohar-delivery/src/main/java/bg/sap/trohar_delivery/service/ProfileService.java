@@ -33,7 +33,7 @@ public class ProfileService {
 
     public boolean hasManagerPrivileges(String username) {
         Optional<? extends User> user = findUserByUsername(username);
-        return user.isPresent() && user.get().getRole() == Roles.admin; // or whatever your manager role is
+        return user.isPresent() && user.get().getRole() == Roles.ADMIN; // or whatever your manager role is
     }
 
     private Optional<? extends User> findUserByUsername(String username) {

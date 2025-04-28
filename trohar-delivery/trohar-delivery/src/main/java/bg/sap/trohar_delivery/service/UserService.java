@@ -19,17 +19,15 @@ public class UserService {
     private final CustomerRepository customerRepository;
     private final DriverRepository driverRepository;
     private final AdminRepository adminRepository;
-    private final RestaurantRepository restaurantRepository;
     private final PasswordEncoder passwordEncoder;
 
     public UserService(CustomerRepository customerRepository,
                        DriverRepository driverRepository,
-                       AdminRepository adminRepository, RestaurantRepository restaurantRepository,
+                       AdminRepository adminRepository,
                        PasswordEncoder passwordEncoder) {
         this.customerRepository = customerRepository;
         this.driverRepository = driverRepository;
         this.adminRepository = adminRepository;
-        this.restaurantRepository = restaurantRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -44,8 +42,6 @@ public class UserService {
         } else if (user instanceof Admin) {
             return adminRepository.save((Admin) user);
 
-        } else if (user instanceof Restaurant) {
-            return restaurantRepository.save((Restaurant) user);
         }else {
             throw new IllegalArgumentException("Unknown user type!");
         }
