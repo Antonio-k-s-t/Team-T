@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const fullname = document.getElementById("fullname").value;
             const newUsername = document.getElementById("newUsername").value;
+            const newEmail = document.getElementById("newEmail").value;
+            const newPhone = document.getElementById("newPhone").value;
             const newPassword = document.getElementById("newPassword").value;
             const repeatPassword = document.getElementById("repeatPassword").value;
             const role = document.getElementById("role").value;
@@ -78,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         [csrfHeader]: csrfToken,
                         "Content-Type": "application/x-www-form-urlencoded"
                     },
-                    body: `fullname=${encodeURIComponent(fullname)}&newUsername=${encodeURIComponent(newUsername)}&newPassword=${encodeURIComponent(newPassword)}&role=${encodeURIComponent(role)}`
+                    body: `fullname=${encodeURIComponent(fullname)}&newUsername=${encodeURIComponent(newUsername)}&newEmail=${encodeURIComponent(newEmail)}&newPhone=${encodeURIComponent(newPhone)}&newPassword=${encodeURIComponent(newPassword)}&role=${encodeURIComponent(role)}`
                 });
 
                 // Check if the response is successful

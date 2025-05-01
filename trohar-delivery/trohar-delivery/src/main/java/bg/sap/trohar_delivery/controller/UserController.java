@@ -54,6 +54,8 @@ public class UserController {
     @PostMapping("/signup")
     public String processRegistration(@RequestParam String fullname,
                                       @RequestParam String newUsername,
+                                      @RequestParam String email,
+                                      @RequestParam String phone,
                                       @RequestParam String newPassword,
                                       @RequestParam String role,
                                       Model model) {
@@ -83,6 +85,9 @@ public class UserController {
                     return "signup";
             }
 
+            user.setUsername(newUsername);
+            user.setEmail(email);
+            user.setPhone(phone);
             user.setUsername(newUsername);
             user.setPassword(passwordEncoder.encode(newPassword));
             user.setRole(userRole);

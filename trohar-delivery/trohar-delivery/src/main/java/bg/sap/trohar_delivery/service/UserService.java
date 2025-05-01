@@ -83,6 +83,16 @@ public class UserService {
         return adminRepository.findByEmail(email);
     }
 
+    private Optional<? extends User> findUserByPhone(String phone) {
+        Optional<Customer> customer = customerRepository.findByPhone(phone);
+        if (customer.isPresent()) return customer;
+
+        Optional<Driver> driver = driverRepository.findByPhone(phone);
+        if (driver.isPresent()) return driver;
+
+        return adminRepository.findByPhone(phone);
+    }
+
     public User saveUser(User user) {
         if (user instanceof Customer) {
             return customerRepository.save((Customer) user);
