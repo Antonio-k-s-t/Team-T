@@ -14,14 +14,6 @@ public class Customer extends User {
     private String name;
 
     @NotNull
-    @Column(unique = true)
-    private String email;
-
-    @NotNull
-    @Column
-    private String address;
-
-    @NotNull
     @Column
     private String phone;
 
@@ -37,22 +29,6 @@ public class Customer extends User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getPhone() {

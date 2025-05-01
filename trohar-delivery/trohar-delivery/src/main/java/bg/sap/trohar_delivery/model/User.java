@@ -24,6 +24,14 @@ public abstract class User{
     @Column
     private String password;
 
+    @NotNull
+    @Column(unique = true)
+    private String email;
+
+    @NotNull
+    @Column
+    private String phone;
+
     public Long getId() {
         return id;
     }
@@ -54,5 +62,21 @@ public abstract class User{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
