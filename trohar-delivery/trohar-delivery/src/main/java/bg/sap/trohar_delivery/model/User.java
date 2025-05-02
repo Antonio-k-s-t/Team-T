@@ -24,11 +24,9 @@ public abstract class User{
     @Column
     private String password;
 
-    @NotNull
     @Column(unique = true)
     private String email;
 
-    @NotNull
     @Column
     private String phone;
 

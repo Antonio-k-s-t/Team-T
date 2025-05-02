@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (form) {
         form.addEventListener("submit", async function(e) {
-
             e.preventDefault();
 
             const fullname = document.getElementById("fullname").value;
@@ -64,14 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const repeatPassword = document.getElementById("repeatPassword").value;
             const role = document.getElementById("role").value;
 
-            // Password mismatch check
             if (newPassword !== repeatPassword) {
                 alert("Паролите не съвпадат.");
                 return;
             }
 
             try {
-                // Sending data to the server via POST request
                 const response = await fetch("/signup", {
                     method: "POST",
                     headers: {
@@ -81,19 +78,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     body: `fullname=${encodeURIComponent(fullname)}&newUsername=${encodeURIComponent(newUsername)}&newPassword=${encodeURIComponent(newPassword)}&role=${encodeURIComponent(role)}`
                 });
 
-                // Check if the response is successful
                 if (response.ok) {
                     alert("Регистрация успешна! Пренасочваме ви към входа...");
                     setTimeout(() => {
-                        window.location.href = "/login";  // Redirecting to login page
+                        window.location.href = "/login";
                     }, 1500);
                 } else {
-                    // If there's an error from the server
                     const errorMessage = await response.text();
-                    alert(errorMessage);  // Show server error message in an alert
+                    alert(errorMessage);
                 }
             } catch (error) {
-                // In case of network or other errors
                 console.error("Sign-up error:", error);
                 alert("Възникна грешка. Моля, опитайте отново.");
             }
@@ -133,15 +127,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if (response.redirected) {
-          window.location.href = response.url;
+            if (response.url.includes('/profile')) {
+              window.location.href = '/profile';
+            } else {
+              const error = await response.text();
+              alert('Грешно потребителско име или парола.');
+            }
         } else {
-          const html = await response.text();
-          document.body.innerHTML = html;
-          alert('Грешно потребителско име или парола.');
+            const error = await response.text();
+            alert('Грешка при влизане. Моля, опитайте отново.');
         }
-      } catch (error) {
-        console.error('Login failed:', error);
-      }
+        } catch (error) {
+            console.error('Login failed:', error);
+            alert('Възникна грешка. Моля, опитайте по-късно.');
+        }
     });
   }
 });

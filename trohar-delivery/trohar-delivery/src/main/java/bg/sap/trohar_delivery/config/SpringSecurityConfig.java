@@ -21,7 +21,7 @@ public class SpringSecurityConfig {
                         .requestMatchers("/signup").permitAll()
                         .requestMatchers("/restaurant").permitAll()
                         .requestMatchers("/cart").permitAll()
-                        .requestMatchers("/profile").permitAll()
+                        .requestMatchers("/profile").authenticated()
                         .requestMatchers("/employee").permitAll()
                         .anyRequest().permitAll());
         return http.build();

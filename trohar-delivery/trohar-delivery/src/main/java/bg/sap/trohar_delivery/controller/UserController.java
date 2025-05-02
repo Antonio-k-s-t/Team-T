@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 public class UserController {
 
@@ -58,37 +60,12 @@ public class UserController {
                                       @RequestParam String role,
                                       Model model) {
         try {
-            if (userService.getUserByUsername(newUsername) != null) {
+            if (userService.findUserByUsername(newUsername).isPresent()) {
                 model.addAttribute("error", "Username already exists");
                 return "signup";
             }
+            userService.registerUser(fullname, newUsername, newPassword, role);
 
-            User user;
-            Roles userRole;
-            switch (role.toLowerCase()) {
-                case "customer":
-                    user = new Customer();
-                    userRole = Roles.CUSTOMER;
-                    break;
-                case "admin":
-                    user = new Admin();
-                    userRole = Roles.ADMIN;
-                    break;
-                case "driver":
-                    user = new Driver();
-                    userRole = Roles.DRIVER;
-                    break;
-                default:
-                    model.addAttribute("error", "Invalid role selected");
-                    return "signup";
-            }
-
-            user.setUsername(newUsername);
-            user.setUsername(newUsername);
-            user.setPassword(passwordEncoder.encode(newPassword));
-            user.setRole(userRole);
-
-            userService.registerUser(user);
             return "redirect:/login";
         } catch (Exception e) {
             model.addAttribute("error", "Registration failed: " + e.getMessage());
@@ -97,9 +74,8 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String showProfile(Model model) {
-        String username = "currentUser";
-        User user = userService.getUserByUsername(username);
+    public String showProfile(Model model, Principal principal) {
+        User user = userService.getUserByUsername(principal.getName());
         model.addAttribute("user", user);
         return "profile";
     }

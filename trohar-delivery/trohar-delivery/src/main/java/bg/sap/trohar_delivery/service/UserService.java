@@ -1,9 +1,12 @@
 package bg.sap.trohar_delivery.service;
 
+import bg.sap.trohar_delivery.enums.Roles;
 import bg.sap.trohar_delivery.model.*;
 import bg.sap.trohar_delivery.repository.AdminRepository;
 import bg.sap.trohar_delivery.repository.CustomerRepository;
 import bg.sap.trohar_delivery.repository.DriverRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -12,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService{
 
     private final CustomerRepository customerRepository;
     private final DriverRepository driverRepository;
@@ -29,19 +32,34 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void registerUser(User user) {
-        String hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
-
-        if (user instanceof Customer) {
-            customerRepository.save((Customer) user);
-        } else if (user instanceof Driver) {
-            driverRepository.save((Driver) user);
-        } else if (user instanceof Admin) {
-            adminRepository.save((Admin) user);
-
-        }else {
-            throw new IllegalArgumentException("Unknown user type!");
+    public void registerUser(String fullname, String newUsername, String newPassword, String role) {
+        switch (role.toLowerCase()) {
+            case "customer":
+                Customer customer = new Customer();
+                customer.setName(fullname);
+                customer.setUsername(newUsername);
+                customer.setPassword(passwordEncoder.encode(newPassword));
+                customer.setRole(Roles.CUSTOMER);
+                customerRepository.save(customer);
+                break;
+            case "admin":
+                Admin admin = new Admin();
+                admin.setName(fullname);
+                admin.setUsername(newUsername);
+                admin.setPassword(passwordEncoder.encode(newPassword));
+                admin.setRole(Roles.ADMIN);
+                adminRepository.save(admin);
+                break;
+            case "driver":
+                Driver driver = new Driver();
+                driver.setName(fullname);
+                driver.setUsername(newUsername);
+                driver.setPassword(passwordEncoder.encode(newPassword));
+                driver.setRole(Roles.DRIVER);
+                driverRepository.save(driver);
+                break;
+            default:
+                throw new IllegalArgumentException("No such role" + role);
         }
     }
 
@@ -63,7 +81,7 @@ public class UserService {
         return user.orElseThrow(() -> new RuntimeException("Email " + email + " not found"));
     }
 
-    private Optional<? extends User> findUserByUsername(String username) {
+    public Optional<? extends User> findUserByUsername(String username) {
         Optional<Customer> customer = customerRepository.findByUsername(username);
         if (customer.isPresent()) return customer;
 
@@ -91,17 +109,5 @@ public class UserService {
         if (driver.isPresent()) return driver;
 
         return adminRepository.findByPhone(phone);
-    }
-
-    public User saveUser(User user) {
-        if (user instanceof Customer) {
-            return customerRepository.save((Customer) user);
-        } else if (user instanceof Driver) {
-            return driverRepository.save((Driver) user);
-        } else if (user instanceof Admin) {
-            return adminRepository.save((Admin) user);
-        } else {
-            throw new IllegalArgumentException("Unknown user type!");
-        }
     }
 }

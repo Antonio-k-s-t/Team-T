@@ -26,23 +26,23 @@
 
   <main class="login-container">
     <h2>Регистрация</h2>
-    <form id="signup-form">
+    <form id="signup-form" action="/signup" method="post">
       <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
       <label for="fullname">Име и фамилия:</label>
-      <input type="text" id="fullname" required />
+      <input type="text" id="fullname" name = "fullname" required />
 
       <label for="newUsername">Потребителско име:</label>
-      <input type="text" id="newUsername" required />
+      <input type="text" id="newUsername" name = "newUsername" required />
 
       <label for="newPassword">Парола:</label>
-      <input type="password" id="newPassword" required minlength="6" />
+      <input type="password" id="newPassword" name = "newPassword" required minlength="6" />
 
       <label for="repeatPassword">Повтори паролата:</label>
-      <input type="password" id="repeatPassword" required />
+      <input type="password" id="repeatPassword" name  = "repeatPassword" required />
 
       <label for="role">Роля:</label>
-      <select id="role" required>
+      <select id="role" name = "role" required>
         <option value="">Избери...</option>
         <option value="client">Клиент</option>
         <option value="admin">Служител</option>
