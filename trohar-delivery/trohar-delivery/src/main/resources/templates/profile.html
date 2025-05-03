@@ -26,17 +26,19 @@
 
   <main class="login-container" id="profile-container">
     <h2>Профил</h2>
-    <p><strong>Име:</strong> <span id="displayName"></span></p>
-    <p><strong>Потребителско име:</strong> <span id="displayUser"></span></p>
-    <p><strong>Роля:</strong> <span id="displayRole"></span></p>
-    <button class="btn primary" id="logout">Изход</button>
+    <p><strong>Име:</strong> <span th:text="${user.name}">Име</span></p>
+    <p><strong>Потребителско име:</strong> <span th:text="${user.username}">Потребител</span></p>
+    <p><strong>Роля:</strong> <span th:text="${user.role}">Роля</span></p>
+    <form th:action="@{/logout}" method="post">
+      <button type="submit" class="btn primary">Изход</button>
+    </form>
   </main>
 
   <footer class="footer">
     <p>&copy; 2024 Trohar Delivery</p>
   </footer>
 
-  <script>
+  <!--<script>
     const username = localStorage.getItem("loggedInUser");
     if (!username) {
       alert("Моля, влезте в профила си.");
@@ -53,7 +55,7 @@
       alert("Излезе успешно!");
       window.location.href = "index.html";
     });
-  </script>
+  </script>-->
 </body>
 </html>
 

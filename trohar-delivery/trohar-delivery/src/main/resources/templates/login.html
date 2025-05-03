@@ -26,17 +26,22 @@
 
   <main class="login-container">
     <h2>Вход</h2>
-    <form id="login-form">
-      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <form id="login-form" th:action="@{/login}" method="post">
+      <input type="hidden" name="_csrf" th:value="${_csrf.token}">
       <label for="username">Потребителско име:</label>
       <input type="text" id="username" name = "username" required />
 
       <label for="password">Парола:</label>
       <input type="password" id="password" name = "password" required />
 
+      <div th:if="${param.error}" class="error">
+        Невалидно потребителско име или парола.
+      </div>
+
       <button type="submit" class="btn primary">Вход</button>
     </form>
   </main>
+
   <footer class="footer">
     <p>&copy; 2024 Trohar Delivery. Всички права запазени.</p>
   </footer>

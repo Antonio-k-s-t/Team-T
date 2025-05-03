@@ -5,6 +5,8 @@ import bg.sap.trohar_delivery.model.*;
 import bg.sap.trohar_delivery.repository.AdminRepository;
 import bg.sap.trohar_delivery.repository.CustomerRepository;
 import bg.sap.trohar_delivery.repository.DriverRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,11 +17,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService{
+public class UserService implements UserDetailsService{
 
     private final CustomerRepository customerRepository;
+
     private final DriverRepository driverRepository;
+
     private final AdminRepository adminRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     public UserService(CustomerRepository customerRepository,
@@ -32,9 +37,10 @@ public class UserService{
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     public void registerUser(String fullname, String newUsername, String newPassword, String role) {
-        switch (role.toLowerCase()) {
-            case "customer":
+        switch (role) {
+            case "CUSTOMER":
                 Customer customer = new Customer();
                 customer.setName(fullname);
                 customer.setUsername(newUsername);
@@ -42,7 +48,7 @@ public class UserService{
                 customer.setRole(Roles.CUSTOMER);
                 customerRepository.save(customer);
                 break;
-            case "admin":
+            case "ADMIN":
                 Admin admin = new Admin();
                 admin.setName(fullname);
                 admin.setUsername(newUsername);
@@ -50,7 +56,7 @@ public class UserService{
                 admin.setRole(Roles.ADMIN);
                 adminRepository.save(admin);
                 break;
-            case "driver":
+            case "DRIVER":
                 Driver driver = new Driver();
                 driver.setName(fullname);
                 driver.setUsername(newUsername);
@@ -59,7 +65,7 @@ public class UserService{
                 driverRepository.save(driver);
                 break;
             default:
-                throw new IllegalArgumentException("No such role" + role);
+                throw new IllegalArgumentException("No such role: " + role);
         }
     }
 
@@ -109,5 +115,16 @@ public class UserService{
         if (driver.isPresent()) return driver;
 
         return adminRepository.findByPhone(phone);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = getUserByUsername(username);
+        System.out.println("Found user with role: " + user.getRole());
+        return org.springframework.security.core.userdetails.User
+                .withUsername(user.getUsername())
+                .password(user.getPassword())
+                .roles(user.getRole().name())
+                .build();
     }
 }

@@ -13,10 +13,6 @@ public class Customer extends User {
     @Column
     private String name;
 
-    @NotNull
-    @Column
-    private String phone;
-
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER, targetEntity = Order.class)
     private List<Order> orders;
 
@@ -29,14 +25,6 @@ public class Customer extends User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public List<Order> getOrders() {

@@ -1,9 +1,8 @@
 package bg.sap.trohar_delivery.controller;
 
-import bg.sap.trohar_delivery.enums.Roles;
 import bg.sap.trohar_delivery.model.*;
 import bg.sap.trohar_delivery.service.UserService;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,35 +15,14 @@ import java.security.Principal;
 public class UserController {
 
     private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/login")
     public String showLoginPage() {
         return "login";
-    }
-
-    @PostMapping("/login")
-    public String processLogin(@RequestParam String username,
-                               @RequestParam String password,
-                               Model model) {
-        try {
-            User user = userService.getUserByUsername(username);
-            if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-                model.addAttribute("user", user);
-                return "redirect:/profile";
-            } else {
-                model.addAttribute("error", "Invalid username or password");
-                return "login";
-            }
-        } catch (Exception e) {
-            model.addAttribute("error", "Invalid username or password");
-            return "login";
-        }
     }
 
 
@@ -83,5 +61,10 @@ public class UserController {
     @GetMapping("/logout")
     public String processLogout() {
         return "redirect:/login";
+    }
+
+    @GetMapping("/employee")
+    public String showEmployee(){
+        return "employee";
     }
 }

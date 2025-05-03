@@ -97,54 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
-// --- Вход ---
-document.addEventListener('DOMContentLoaded', function () {
-  const loginForm = document.getElementById('login-form');
-
-  if (loginForm) {
-    loginForm.addEventListener('submit', async function (event) {
-      event.preventDefault();
-
-      const usernameField = document.getElementById("username");
-      const passwordField = document.getElementById("password");
-
-      const username = usernameField.value.trim();
-      const password = passwordField.value;
-
-      try {
-        const formData = new URLSearchParams();
-        formData.append('username', username);
-        formData.append('password', password);
-
-        const response = await fetch('/login', {
-          method: 'POST',
-          headers: {
-            [csrfHeader]: csrfToken,
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: formData
-        });
-
-        if (response.redirected) {
-            if (response.url.includes('/profile')) {
-              window.location.href = '/profile';
-            } else {
-              const error = await response.text();
-              alert('Грешно потребителско име или парола.');
-            }
-        } else {
-            const error = await response.text();
-            alert('Грешка при влизане. Моля, опитайте отново.');
-        }
-        } catch (error) {
-            console.error('Login failed:', error);
-            alert('Възникна грешка. Моля, опитайте по-късно.');
-        }
-    });
-  }
-});
-
 // --- Зареждане на менюто ---
 document.addEventListener('DOMContentLoaded', async function () {
   try {
