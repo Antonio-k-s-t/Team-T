@@ -272,21 +272,30 @@ if (currentPage === "restaurant.html" && loggedUser) {
     })
   );
 
-  if (orderList) {
-    if (myOrders.length === 0) {
-      orderList.innerHTML = `<li>Няма нови поръчки.</li>`;
-    } else {
-      myOrders.forEach((o) => {
+    myOrders.forEach((o, index) => {
         const li = document.createElement("li");
         li.innerHTML = `
-          <p><strong>От:</strong> ${o.client}</p>
-          <p><strong>Продукти:</strong> ${o.items.map(i => i.name).join(", ")}</p>
-          <p><strong>Дата:</strong> ${new Date(o.created).toLocaleString()}</p>
-          <hr />
-        `;
+    <p><strong>От:</strong> ${o.client}</p>
+    <p><strong>Продукти:</strong> ${o.items.map(i => i.name).join(", ")}</p>
+    <p><strong>Дата:</strong> ${new Date(o.created).toLocaleString()}</p>
+    <button class="btn accept" data-index="${index}">Приеми</button>
+    <button class="btn reject" data-index="${index}">Отхвърли</button>
+    <hr />
+  `;
         orderList.appendChild(li);
-      });
-    }
-  }
+    });
+    orderList.addEventListener("click", (e) => {
+        if (e.target.classList.contains("accept") || e.target.classList.contains("reject")) {
+            const index = e.target.getAttribute("data-index");
+            const action = e.target.classList.contains("accept") ? "приета" : "отхвърлена";
+
+            alert(`Поръчката е ${action}.`);
+            allOrders.splice(index, 1); // Премахни поръчката
+            localStorage.setItem("orders", JSON.stringify(allOrders));
+            location.reload(); // Обнови списъка
+        }
+    });
+
+
 }
 
